@@ -1,0 +1,10 @@
+@font-face {
+    font-family: omori;
+    src: url(/assets/fonts/OMORI_GAME2.ttf);
+}
+
+body {
+    font-family: omori;
+    color: white;
+    background-color: black;
+}
