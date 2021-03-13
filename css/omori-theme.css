@@ -32,10 +32,67 @@ h2 {
     font-size: 2em;
 }
 
+@keyframes arrow-menu-animation {
+    0% {
+        transform: translateX(0px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+#box {
+    border-color: #ffffff;
+    border-width: 3px;
+    border-style: solid;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 5px;
+}
+
+#box p {
+    display: flex;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 39px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
 .column {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-grow: 1;
+}
+
+#arrow-menu {
+    width: 29px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    animation-name: arrow-menu-animation;
+    animation-duration: 0.7s;
+    animation-iteration-count: infinite;
+}
+
+p.box-arrow-margin {
+    margin-left: 39px !important;
+    margin-right: 10px !important;
+}
+
+a {
+    color: white;
+    text-decoration-line: none;
+    transition: 0.5s;
+}
+
+a:hover {
+    color: #cccccc;
 }
