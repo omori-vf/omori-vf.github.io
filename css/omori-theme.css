@@ -3,8 +3,39 @@
     src: url(/assets/fonts/OMORI_GAME2.ttf);
 }
 
-body {
+html {
     font-family: omori;
     color: white;
     background-color: black;
+    font-size: 1.5em;
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+body {
+    display: flex;
+    width: 100%;
+}
+
+#main-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
 }
