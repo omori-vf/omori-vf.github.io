@@ -3,12 +3,6 @@ let BOX = null;
 let ARROW = null;
 let NB_MENUS = 0;
 
-// TODO : Gérer la confirmation des boutons avec la touche Enter.
-// Puisque les actions vont être différentes (redirection,
-// affichage d'un menu déroulant, téléchargement...), il faudra
-// certainement utiliser un système de callback (on précise le
-// nom de la fonction dans le html et on gère son appel dans le JS)
-
 document.addEventListener("DOMContentLoaded", (event) => {
     BOX = document.getElementById("box");
 
@@ -29,6 +23,11 @@ document.addEventListener("keydown", function (event) {
     } else if (key === "ArrowLeft" && ARROW_INDEX !== 0) {
         --ARROW_INDEX;
         update = true;
+    }
+    else if (key === "Enter") {
+        const current_box = BOX.children[ARROW_INDEX + 1];
+        const callback = current_box.getAttribute("callback");
+        execute_str_callback(callback);
     }
     if (update) {
         BOX.removeChild(ARROW);
