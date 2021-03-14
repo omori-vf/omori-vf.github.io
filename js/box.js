@@ -5,16 +5,19 @@ let NB_MENUS = 0;
 
 document.addEventListener("DOMContentLoaded", (event) => {
     BOX = document.getElementById("box");
+    if (BOX !== null) {
 
-    ARROW = document.createElement("img");
-    ARROW.src = "assets/images/cursor_menu.png";
-    ARROW.id = "arrow-menu";
-    NB_MENUS = BOX.children.length;
+        ARROW = document.createElement("img");
+        ARROW.src = "assets/images/cursor_menu.png";
+        ARROW.id = "arrow-menu";
+        NB_MENUS = BOX.children.length;
 
-    BOX.insertBefore(ARROW, BOX.firstChild);
+        BOX.insertBefore(ARROW, BOX.firstChild);
+    }
 });
 
 document.addEventListener("keydown", function (event) {
+    if (BOX === null) return;
     const key = event.key || event.keyCode;
     let update = false;
     if (key === "ArrowRight" && ARROW_INDEX !== NB_MENUS - 1) {
