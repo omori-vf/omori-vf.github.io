@@ -8,10 +8,12 @@ js_includes: "/js/post_page.js"
     <div id="dates">
         {% assign i = -1 %}
         {% for post in site.posts %}
-            {% assign i = i | plus:1 %}
-            <p onclick="set_current_date({{i}})">
-                {{post.date | date_to_short_french}} - {{post.title}}
-            </p>
+            {% if post.path contains page.post_type %}
+                {% assign i = i | plus:1 %}
+                <p onclick="set_current_date({{i}})">
+                    {{post.date | date_to_short_french}} - {{post.title}}
+                </p>
+            {% endif %}
         {% endfor %}
     </div>
     <div id="post-content">
