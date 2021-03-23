@@ -18,8 +18,10 @@ js_includes: "/js/post_page.js"
     </div>
     <div id="post-content">
         {% for post in site.posts %}
-            <div class="date">{{ post.date | date_to_french }}</div>
-            <div>{{post.content}}</div>
+            {% if post.path contains page.post_type %}
+                <div class="date">{{ post.date | date_to_french }}</div>
+                <div>{{post.content}}</div>
+            {% endfor %}
         {% endfor %}
     </div>
 </div>
