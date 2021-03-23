@@ -5,6 +5,5 @@ permalink: /
 redirect_to:
   - /accueil
 ---
----
 
 Veuillez patienter !
