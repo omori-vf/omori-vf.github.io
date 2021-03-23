@@ -1,0 +1,111 @@
+@keyframes growing-rectangle {
+    0% {
+        width: 0%;
+        max-height: 0%;
+        background-color: white;
+        color: rgba(255, 255, 255, 0);
+        overflow: hidden;
+    }
+    20% {
+        color: rgba(255, 255, 255, 0);
+    }
+    33% {
+        background-color: black;
+    }
+    50% {
+        width: 100%;
+        height: calc(100% - 10px);
+        max-height: calc(100% - 10px);
+    }
+    100% {
+        width: 100%;
+        color: rgba(255, 255, 255, 255);
+        height: calc(100% - 10px);
+        max-height: calc(100% - 10px);
+    }
+}
+
+div#container-content-animation {
+    display: flex;
+    align-items: center;
+
+    border-color: white;
+    border-width: 3px;
+    border-style: solid;
+    margin: 0px;
+    padding: 0px;
+
+    animation-name: growing-rectangle;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+}
+
+div#post-content {
+    display: flex;
+    align-items: center;
+
+    box-sizing: border-box;
+    width: 100%;
+
+    flex-direction: column;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+div#post-content div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+div#post-content div > * {
+    text-align: center;
+}
+
+div#dates {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 10px;
+    width: 30%;
+
+    border-right-color: white;
+    border-right-width: 3px;
+    border-right-style: solid;
+
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+div#dates p {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    line-height: 20px;
+    transition: 0.5s;
+
+    font-weight: normal;
+    text-decoration: none;
+}
+
+div#dates p:hover {
+    cursor: pointer;
+    color: #cccccc;
+}
+
+div#dates p#selected-date {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+div.date {
+    display: flex;
+    align-self: flex-end;
+    font-weight: bold;
+}

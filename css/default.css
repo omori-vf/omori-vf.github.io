@@ -4,34 +4,36 @@
 }
 
 html {
-    font-family: omori;
-    color: white;
-    background-color: black;
-    font-size: 1.5em;
-    height: 100%;
-    width: 100%;
-    display: flex;
+    box-sizing: border-box;
+    height: 99vh;
 }
 
 body {
-    display: flex;
-    width: 100%;
-}
+    font-family: omori;
+    color: white;
+    background-color: black;
+    font-size: 24px;
+    margin: 10px;
 
-#main-container {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    align-items: center;
-    justify-content: center;
+    height: calc(100% - 20px);
 }
 
 h1 {
-    font-size: 3em;
+    font-size: 72px;
+    margin: 0px;
 }
 
 h2 {
-    font-size: 2em;
+    font-size: 48px;
+    margin: 0px;
+}
+
+h3 {
+    font-size: 36px;
+    margin: 0px;
 }
 
 @keyframes arrow-menu-animation {
@@ -66,14 +68,6 @@ h2 {
     margin-bottom: 12px;
 }
 
-.column {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-}
-
 #arrow-menu {
     width: 29px;
     height: 15px;
@@ -97,4 +91,11 @@ a {
 
 a:hover {
     color: #cccccc;
+}
+
+div#main-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
 }
