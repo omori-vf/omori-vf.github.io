@@ -1,19 +1,30 @@
+---
+---
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
         <title>{{ page.title }}</title>
-        <link rel="stylesheet" href="/css/omori-theme.css" />
+        <link rel="stylesheet" href="/css/default.css" />
+        {% for additional_css_file in layout.css_includes %}
+            <link rel="stylesheet" href="{{ additional_css_file }}" />
+        {% endfor %}
         {% for additional_css_file in page.css_includes %}
-        <link rel="stylesheet" href="{{ additional_css_file }}" />
+            <link rel="stylesheet" href="{{ additional_css_file }}" />
         {% endfor %}
         <script src="js/box.js"></script>
         <script src="js/common.js"></script>
+        {% for additional_js_file in layout.js_includes %}
+            <script src="{{ additional_js_file }}"></script>
+        {% endfor %}
         {% for additional_js_file in page.js_includes %}
-        <script src="{{ additional_js_file }}"></script>
+            <script src="{{ additional_js_file }}"></script>
         {% endfor %}
     </head>
     <body>
-        <div id="main-container">{{ content }}</div>
+        <div id="main-container" class="column">
+            {{ content }}
+        </div>
     </body>
 </html>

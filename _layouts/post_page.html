@@ -1,0 +1,23 @@
+---
+layout: page
+css_includes: ["/css/page.css", "/css/post_page.css"]
+js_includes: "/js/post_page.js"
+---
+
+<div id="container-content-animation">
+    <div id="dates">
+        {% assign i = -1 %}
+        {% for post in site.posts %}
+            {% assign i = i | plus:1 %}
+            <p onclick="set_current_date({{i}})">
+                {{post.date | date_to_short_french}} - {{post.title}}
+            </p>
+        {% endfor %}
+    </div>
+    <div id="post-content">
+        {% for post in site.posts %}
+            <div class="date">{{ post.date | date_to_french }}</div>
+            <div>{{post.content}}</div>
+        {% endfor %}
+    </div>
+</div>

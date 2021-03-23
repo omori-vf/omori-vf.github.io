@@ -1,5 +1,38 @@
 ---
 layout: default
+css_includes: "css/page.css"
 ---
 
-{{ content }}
+<div id="row-main-container">
+    <div id="left-fill"></div>
+    <div id="middle-fill">
+        <div id="header">
+            <h1>OMORI</h1>
+            <h3>Version française</h3>
+        </div>
+        <div id="header-menu">
+            <div id="box">
+                <p callback="redirect_to('/actualites')">
+                    <a href="/">ACTUALITÉS</a>
+                </p>
+                <p callback="redirect_to('/')">
+                    <a href="/">ÉQUIPE</a>
+                </p>
+                <p callback="redirect_to('/')">
+                    <a href="/">TRADUCTION</a>
+                </p>
+                <p callback="redirect_to('/')">
+                    <a href="/">AIDE</a>
+                </p>
+                <p callback="redirect_to('/')">
+                    <a href="/">TÉLÉCHARGER</a>
+                </p>
+            </div>
+        </div>
+        <div id="page-content" class="column">
+            {{ content }}
+        </div>
+        <div id="footer"></div>
+    </div>
+    <div id="right-fill"></div>
+</div>
