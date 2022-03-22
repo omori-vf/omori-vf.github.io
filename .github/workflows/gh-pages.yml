@@ -1,0 +1,36 @@
+name: Update number of downloads
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+
+jobs:
+ deploy:
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Prerequisites
+        run: sudo apt install jq -y
+
+      - name: Update downloads
+        run: 'nb_clicks=`curl --header "Authorization: Bearer ${{ secrets.BITLY_API_KEY }}" -X GET https://api-ssl.bitly.com/v4/bitlinks/bit.ly/3L0lasL/clicks/summary -s | jq .total_clicks` && sed -i -E "s/<span id=\"nb-downloads\">(.*)<\/span>/<span id=\"nb-downloads\">$nb_clicks téléchargements<\/span>/" public/test.html'
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.85.0'
+
+      - name: Build
+        run: hugo --minify
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+
+      
