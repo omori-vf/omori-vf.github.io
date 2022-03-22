@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Prerequisites
-      - run: sudo apt install jq -y
+        run: sudo apt install jq -y
 
       - name: Update downloads
-      - run: 'nb_clicks=`curl --header "Authorization: Bearer ${{ secrets.BITLY_API_KEY }}" -X GET https://api-ssl.bitly.com/v4/bitlinks/bit.ly/3L0lasL/clicks/summary -s | jq .total_clicks` && sed -i -E "s/<span id=\"nb-downloads\">(.*)<\/span>/<span id=\"nb-downloads\">$nb_clicks téléchargements<\/span>/" test.html'
+        run: 'nb_clicks=`curl --header "Authorization: Bearer ${{ secrets.BITLY_API_KEY }}" -X GET https://api-ssl.bitly.com/v4/bitlinks/bit.ly/3L0lasL/clicks/summary -s | jq .total_clicks` && sed -i -E "s/<span id=\"nb-downloads\">(.*)<\/span>/<span id=\"nb-downloads\">$nb_clicks téléchargements<\/span>/" test.html'
