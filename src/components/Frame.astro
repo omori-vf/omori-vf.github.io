@@ -1,0 +1,17 @@
+<div class="frame-outer">
+  <div class="frame-content">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .frame-outer {
+    background: var(--background);
+    padding: 1px;
+  }
+
+  .frame-content {
+    border: 2px solid var(--color);
+    padding: var(--spacing-s);
+  }
+</style>

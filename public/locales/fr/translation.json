@@ -1,4 +1,6 @@
 {
-  "introduction": "Pour commencer, ouvrez le dossier <0>src/pages</0> dans votre projet.<1><2>Challenge de code:</2> Modifiez le message \"Bienvenue à Astro\" ci-dessus.",
-  "documentation": "Documentation"
+  "index": {
+    "welcome": "Bienvenue dans l'espace noir",
+    "introduction": "Nous ne sommes pas affiliés, associés, autorisés, endossés par, ou en aucune façon officiellement liés à OMOCAT, ou l’une de ses filiales ou ses filiales. Le site officiel d’OMORI peut être trouvé à <0>https://www.omori-game.com</0>."
+  }
 }
