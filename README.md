@@ -48,9 +48,15 @@ All commands are run from the root of the project, from a terminal:
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
 
-## VS Code
+## VS Code Setup
 
-Enable eslint for astro `.vscode/settings.json`:
+Extentions:
+
+1. Astro (astro-build.astro-vscode)
+1. ESLint (dbaeumer.vscode-eslint)
+1. Prettier (esbenp.prettier-vscode)
+
+Enable eslint and prettier for astro `.vscode/settings.json`:
 
 ```JSON
 {
@@ -60,6 +66,11 @@ Enable eslint for astro `.vscode/settings.json`:
     "astro", // Enable .astro
     "typescript", // Enable .ts
     "typescriptreact" // Enable .tsx
-  ]
+  ],
+  "prettier.documentSelectors": ["**/*.astro"],
+  "[astro]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
+
 ```
