@@ -32,8 +32,11 @@ const { title } = Astro.props;
       }
 
       :root {
-        --background: #010101;
-        --color: #d9d9d9;
+        --black: #010101;
+        --white: #d9d9d9;
+
+        --background: var(--black);
+        --color: var(--white);
 
         --font-size-n: 24px;
         --font-size-m: 32px;
@@ -48,6 +51,21 @@ const { title } = Astro.props;
         --text-max-width: 800px;
         --content-max-width: 900px;
       }
+
+      @media (prefers-color-scheme: light) {
+        :root {
+          --background: var(--white);
+          --color: var(--black);
+        }
+      }
+
+      @media screen and (-ms-high-contrast: active) {
+        :root {
+          --white: #fff;
+          --black: #000;
+        }
+      }
+
       html {
         font-family: "omori", sans-serif;
         background: var(--background);
