@@ -8,10 +8,12 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "i18n:generate": "astro-i18next generate"
   },
   "dependencies": {
-    "astro": "^1.9.0"
+    "astro": "^1.9.0",
+    "astro-i18next": "^1.0.0-beta.15"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.48.2",
