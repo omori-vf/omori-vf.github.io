@@ -1,8 +1,8 @@
 import type { AstroI18nextConfig } from "astro-i18next";
 
 const config: AstroI18nextConfig = {
-  defaultLocale: "en",
-  locales: ["en", "fr"],
+  defaultLocale: "fr",
+  locales: ["fr"],
   load: ["server"],
   i18nextServer: {
     debug: true,
