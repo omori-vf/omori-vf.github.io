@@ -19,6 +19,7 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
+    <img class="logo" src="/omori-vf.svg" alt="OMORI Version Française" />
     <Navbar />
     <main>
       <slot />
@@ -50,10 +51,11 @@ const { title } = Astro.props;
 
         --spacing-xs: 5px;
         --spacing-s: 10px;
-        --spacing-s: 15px;
+        --spacing-n: 15px;
         --spacing-m: 20px;
+        --spacing-l: 25px;
 
-        --text-max-width: 800px;
+        --text-max-width: 700px;
         --content-max-width: 900px;
       }
 
@@ -91,6 +93,11 @@ const { title } = Astro.props;
         margin-top: var(--spacing-m);
       }
 
+      h1 {
+        font-size: var(--font-size-xl);
+        margin: 0;
+      }
+
       p {
         font-size: var(--font-size-n);
         max-width: var(--text-max-width);
@@ -102,6 +109,7 @@ const { title } = Astro.props;
       }
 
       a {
+        color: var(--blue);
         font-size: var(--font-size-n);
       }
 
@@ -111,6 +119,30 @@ const { title } = Astro.props;
 
       * {
         box-sizing: border-box;
+      }
+
+      .logo {
+        height: 100px;
+        filter: invert(15%);
+        margin: var(--spacing-m) 0;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .logo {
+          filter: invert(85%);
+        }
+      }
+
+      .frame-outer {
+        background: var(--black);
+        color: var(--white);
+        padding: 1px;
+      }
+
+      .frame-content {
+        border: 2px solid var(--white);
+        padding: var(--spacing-s);
+        height: 100%;
       }
     </style>
   </body>
