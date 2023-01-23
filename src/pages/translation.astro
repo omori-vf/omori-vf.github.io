@@ -1,0 +1,8 @@
+---
+import { t, changeLanguage } from "i18next";
+import Layout from "../layouts/Layout.astro";
+
+changeLanguage("en");
+---
+
+<Layout title={t("translation.title")}>{t("translation.title")}</Layout>

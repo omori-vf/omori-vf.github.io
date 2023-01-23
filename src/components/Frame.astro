@@ -1,4 +1,8 @@
-<div class="frame-outer">
+---
+const { class: className } = Astro.props;
+---
+
+<div class={`${className ? className + " " : ""}frame-outer`}>
   <div class="frame-content">
     <slot />
   </div>
@@ -14,5 +18,6 @@
   .frame-content {
     border: 2px solid var(--white);
     padding: var(--spacing-s);
+    height: 100%;
   }
 </style>

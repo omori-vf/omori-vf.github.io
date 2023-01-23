@@ -1,38 +1,30 @@
 ---
 import { t, changeLanguage } from "i18next";
 import Layout from "../layouts/Layout.astro";
-import { Trans, LanguageSelector } from "astro-i18next/components";
+import { Trans } from "astro-i18next/components";
 import Frame from "../components/Frame.astro";
 
 changeLanguage("en");
 ---
 
 <Layout title={t("index.welcome")}>
-  <main>
-    <LanguageSelector showFlag={true} class="languages" />
-    <Frame>
-      <h1>{t("index.welcome")}</h1>
-      <p class="instructions">
-        <Trans i18nKey="index.introduction">
-          We are not affiliated, associated, authorized, endorsed by, or in any
-          way officially connected with OMOCAT, or any of its subsidiaries or
-          its affiliates. The official OMORI website can be found at
-          <a href="https://www.omori-game.com" target="_blank"
-            >https://www.omori-game.com</a
-          >.
-        </Trans>
-      </p>
-    </Frame>
-  </main>
+  <Frame>
+    <h1>{t("index.welcome")}</h1>
+    <p id="countdown"></p>
+    <p class="instructions">
+      <Trans i18nKey="index.introduction">
+        We are not affiliated, associated, authorized, endorsed by, or in any
+        way officially connected with OMOCAT, or any of its subsidiaries or its
+        affiliates. The official OMORI website can be found at
+        <a href="https://www.omori-game.com" target="_blank"
+          >https://www.omori-game.com</a
+        >.
+      </Trans>
+    </p>
+  </Frame>
 </Layout>
 
 <style>
-  main {
-    margin: auto;
-    padding: var(--spacing-m);
-    max-width: var(--content-max-width);
-  }
-
   h1 {
     font-size: var(--font-size-xl);
     margin: 0;
