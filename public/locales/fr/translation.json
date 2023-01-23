@@ -15,12 +15,23 @@
   },
   "team": {
     "title": "Team",
-    "menuTitle": "INFO ENNEMIS !"
+    "menuTitle": "INFO ENNEMIS !",
+    "back": "Retour",
+    "mirry": "Dernière traductrice arrivée, elle forme avec SHELLEY le duo infernal de l'équipe. Championne de feuille-papier-ciseaux et amatrice de pizzas.<br /> - MIRRY<br />Experte officielle des pizzas.<br /> -BEAFANTLES<br />Une aide précieuse pendant cette aventure, ne change jamais de tête.<br /> - TOURNESOL<br />Redoutable au jeu feuille-papier-ciseaux. Petit penchant pour l'humiliation publique.<br /> - SHELLEY"
   },
   "translation": {
     "title": "Translation"
   },
   "faq": {
-    "title": "FAQ"
+    "title": "FAQ",
+    "q1": "faq.q1",
+    "q2": "faq.q2",
+    "q3": "faq.q3",
+    "q4": "faq.q4",
+    "q5": "faq.q5",
+    "q6": "faq.q6",
+    "q7": "faq.q7",
+    "q8": "faq.q8",
+    "q9": "faq.q9"
   }
 }
