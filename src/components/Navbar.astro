@@ -1,0 +1,35 @@
+---
+import NavItem from "./NavItem.astro";
+import { t } from "i18next";
+import Frame from "./Frame.astro";
+
+const navItems = [
+  { title: "nav.home", link: "/omori-vf.github.io/" },
+  { title: "nav.installation", link: "/omori-vf.github.io/installation" },
+  { title: "nav.translation", link: "/omori-vf.github.io/translation" },
+  { title: "nav.team", link: "/omori-vf.github.io/team" },
+  { title: "nav.faq", link: "/omori-vf.github.io/faq" },
+];
+---
+
+<nav>
+  <Frame>
+    <ul>
+      {navItems.map((v) => <NavItem title={t(v.title)} link={v.link} />)}
+    </ul>
+  </Frame>
+</nav>
+
+<style>
+  nav {
+    width: 100%;
+    max-width: var(--content-max-width);
+  }
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+  }
+</style>

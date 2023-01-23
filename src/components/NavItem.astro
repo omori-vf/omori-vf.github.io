@@ -1,0 +1,50 @@
+---
+export interface Props {
+  title: string;
+  link: string;
+}
+
+const { title, link } = Astro.props;
+---
+
+<li>
+  <a data-text={title} href={link}>{title}</a>
+</li>
+
+<style>
+  li {
+    list-style-type: none;
+  }
+
+  a {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  li > a:visited {
+    color: var(--white);
+  }
+
+  a:hover {
+    font-weight: var(--bold);
+  }
+
+  a::after {
+    content: attr(data-text);
+    height: 0;
+    visibility: hidden;
+    overflow: hidden;
+    user-select: none;
+    pointer-events: none;
+    font-weight: var(--bold);
+  }
+
+  @media speech {
+    a::after {
+      display: none;
+    }
+  }
+</style>
