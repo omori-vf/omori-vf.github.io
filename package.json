@@ -12,8 +12,10 @@
     "i18n:generate": "astro-i18next generate"
   },
   "dependencies": {
+    "@astrojs/svelte": "^1.0.2",
     "astro": "^1.9.0",
-    "astro-i18next": "^1.0.0-beta.15"
+    "astro-i18next": "^1.0.0-beta.15",
+    "svelte": "^3.55.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.48.2",
