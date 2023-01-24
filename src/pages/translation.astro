@@ -1,8 +1,11 @@
 ---
 import { t, changeLanguage } from "i18next";
+import Frame from "../components/Frame.astro";
 import Layout from "../layouts/Layout.astro";
 
 changeLanguage("fr");
 ---
 
-<Layout title={t("translation.title")}>{t("translation.title")}</Layout>
+<Layout title={t("translation.title")}>
+  <Frame><p>{t("translation.title")}</p></Frame>
+</Layout>

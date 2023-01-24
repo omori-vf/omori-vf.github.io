@@ -11,7 +11,7 @@ changeLanguage("fr");
   <Frame>
     <div class="faq-content">
       <h1>FAQ</h1>
-      <nl>
+      <ol>
         <li>
           <p>
             <Trans i18nKey="faq.q1">
@@ -117,7 +117,7 @@ changeLanguage("fr");
             </Trans>
           </p>
         </li>
-      </nl>
+      </ol>
     </div>
   </Frame>
 </Layout>
@@ -127,16 +127,23 @@ changeLanguage("fr");
     padding-left: var(--spacing-l);
   }
 
-  h1 {
-    padding-bottom: var(--spacing-m);
+  h1 + * {
+    margin-top: var(--spacing-m);
   }
 
-  nl {
+  ol {
     font-size: var(--font-size-n);
     list-style: decimal;
+    padding: 0;
   }
 
   li {
     margin-bottom: var(--spacing-m);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-n);
+  }
+
+  li > p {
+    font-weight: var(--font-weight-n);
   }
 </style>
