@@ -1,13 +1,14 @@
 {
   "nav": {
-    "home": "Home",
-    "team": "Team",
-    "translation": "Translation",
+    "home": "Accueil",
+    "team": "Equipe",
+    "translation": "Traduction",
     "faq": "FAQ",
     "installation": "Installation"
   },
   "index": {
     "welcome": "Bienvenue dans l'espace noir",
+    "disclaimer": "Disclaimer",
     "introduction": "Nous ne sommes pas affiliés, associés, autorisés, endossés par, ou en aucune façon officiellement liés à OMOCAT, ou l’une de ses filiales ou ses filiales. Le site officiel d’OMORI peut être trouvé à <0>https://www.omori-game.com</0>."
   },
   "installation": {
