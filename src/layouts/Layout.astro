@@ -28,7 +28,7 @@ const { title } = Astro.props;
     <style is:global>
       @font-face {
         font-family: "omori";
-        src: url("/OMORI_GAME2.woff2") format("woff2");
+        src: url("/fonts/OMORI_GAME2.woff2") format("woff2");
       }
 
       :root {
@@ -92,6 +92,7 @@ const { title } = Astro.props;
         align-items: center;
         font-size: var(--font-size-n);
         margin: 0;
+        cursor: url("/images/icons/cursor.png"), auto;
       }
 
       main {
