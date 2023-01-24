@@ -1,27 +1,35 @@
 {
   "nav": {
     "home": "Accueil",
-    "team": "Equipe",
+    "team": "Équipe",
     "translation": "Traduction",
     "faq": "FAQ",
     "installation": "Installation"
   },
   "index": {
     "welcome": "Bienvenue dans l'espace noir",
-    "disclaimer": "Disclaimer",
-    "introduction": "Nous ne sommes pas affiliés, associés, autorisés, endossés par, ou en aucune façon officiellement liés à OMOCAT, ou l’une de ses filiales ou ses filiales. Le site officiel d’OMORI peut être trouvé à <0>https://www.omori-game.com</0>."
+    "disclaimer": "Avertissement",
+    "introduction": "Nous ne sommes pas affiliés, associés, autorisés, endossés par, ou en aucune façon officiellement liés à OMOCAT, ou l’une de ses filiales. Le site officiel d’OMORI peut être trouvé à <0>https://www.omori-game.com</0>."
   },
   "installation": {
     "title": "Installation"
   },
   "team": {
-    "title": "Team",
-    "menuTitle": "INFO ENNEMIS !",
+    "title": "Équipe",
+    "menuTitle": "INFOS ENNEMIS !",
     "back": "Retour",
-    "mirry": "Dernière traductrice arrivée, elle forme avec SHELLEY le duo infernal de l'équipe. Championne de feuille-papier-ciseaux et amatrice de pizzas.<br /> - MIRRY<br />Experte officielle des pizzas.<br /> -BEAFANTLES<br />Une aide précieuse pendant cette aventure, ne change jamais de tête.<br /> - TOURNESOL<br />Redoutable au jeu feuille-papier-ciseaux. Petit penchant pour l'humiliation publique.<br /> - SHELLEY"
+    "ylovoir": "",
+    "beafantles": "",
+    "meroko": "",
+    "colza": "",
+    "nofall": "",
+    "tournesol": "",
+    "shelly": "",
+    "mirry": "Dernière traductrice arrivée, elle forme avec SHELLEY le duo infernal de l'équipe. Championne de feuille-papier-ciseaux et amatrice de pizzas.<br /> - MIRRY<br />Experte officielle des pizzas.<br /> -BEAFANTLES<br />Une aide précieuse pendant cette aventure, ne change jamais de tête.<br /> - TOURNESOL<br />Redoutable au jeu feuille-papier-ciseaux. Petit penchant pour l'humiliation publique.<br /> - SHELLEY",
+    "kris": ""
   },
   "translation": {
-    "title": "Translation"
+    "title": "Traduction"
   },
   "faq": {
     "title": "FAQ",
