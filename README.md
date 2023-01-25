@@ -55,6 +55,7 @@ Extentions:
 1. Astro (astro-build.astro-vscode)
 1. ESLint (dbaeumer.vscode-eslint)
 1. Prettier (esbenp.prettier-vscode)
+1. Svelte for VS Code (svelte.svelte-vscode)
 
 Enable eslint and prettier for astro `.vscode/settings.json`:
 
@@ -65,10 +66,14 @@ Enable eslint and prettier for astro `.vscode/settings.json`:
     "javascriptreact",
     "astro", // Enable .astro
     "typescript", // Enable .ts
-    "typescriptreact" // Enable .tsx
+    "typescriptreact", // Enable .tsx
+    "svelte"
   ],
   "prettier.documentSelectors": ["**/*.astro"],
   "[astro]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[svelte]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }

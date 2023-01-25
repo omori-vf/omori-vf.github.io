@@ -21,8 +21,16 @@
     <div class="frame-content background-container">
       {#if selectedMember != null && !!selectedMember.pictureUri && !!selectedMember.backgroundUri}
         <img class="background" src={selectedMember.backgroundUri} alt="" />
-        <div class="picture-container" style="align-items: {selectedMember.picturePlacement ?? "center"};">        
-          <img class="picture" src={selectedMember.pictureUri} alt="" style="flex: 1 0 {selectedMember.pictureWidthPercent ?? 100}%;" />
+        <div
+          class="picture-container"
+          style="align-items: {selectedMember.picturePlacement ?? 'center'};"
+        >
+          <img
+            class="picture"
+            src={selectedMember.pictureUri}
+            alt=""
+            style="flex: 1 0 {selectedMember.pictureWidthPercent ?? 100}%;"
+          />
         </div>
       {/if}
     </div>
