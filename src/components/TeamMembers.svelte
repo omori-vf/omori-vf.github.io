@@ -1,4 +1,4 @@
-<script type="ts">
+<script lang="ts">
   import type { TeamMember } from "../models";
 
   export let members: TeamMember[];
