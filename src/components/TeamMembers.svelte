@@ -1,11 +1,13 @@
-<script>
-  export let members;
-  export let menuTitle;
-  export let backText;
+<script type="ts">
+  import type { TeamMember } from "../models";
 
-  let selectedMember = null;
+  export let members: TeamMember[];
+  export let menuTitle: string;
+  export let backText: string;
 
-  function selectMember(member) {
+  let selectedMember: TeamMember | null = null;
+
+  function selectMember(member: TeamMember) {
     selectedMember = member;
   }
 
@@ -16,10 +18,12 @@
 
 <section class="section-team">
   <div class="frame-outer">
-    <div class="frame-content">
-      {#if selectedMember != null}
-        {selectedMember.backgroundUri}
-        {selectedMember.pictureUri}
+    <div class="frame-content background-container">
+      {#if selectedMember != null && !!selectedMember.pictureUri && !!selectedMember.backgroundUri}
+        <img class="background" src={selectedMember.backgroundUri} alt="" />
+        <div class="picture-container" style="align-items: {selectedMember.picturePlacement ?? "center"};">        
+          <img class="picture" src={selectedMember.pictureUri} alt="" style="flex: 1 0 {selectedMember.pictureWidthPercent ?? 100}%;" />
+        </div>
       {/if}
     </div>
   </div>
@@ -61,8 +65,8 @@
 <style>
   .section-team {
     display: grid;
-    grid-template: max-content auto / 1fr 1fr;
-    min-height: 500px;
+    grid-template: min-content auto / minmax(0, 1fr) minmax(0, 1fr);
+    min-height: 600px;
     gap: var(--spacing-xs);
   }
 
@@ -100,5 +104,26 @@
 
   button:hover {
     font-weight: bold;
+  }
+
+  .background-container {
+    display: grid;
+    grid-template: 100% / 100%;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .background {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    height: 100%;
+  }
+
+  .picture-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
   }
 </style>
