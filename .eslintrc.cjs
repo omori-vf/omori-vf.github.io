@@ -6,7 +6,7 @@ module.exports = {
     "plugin:astro/recommended",
   ],
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint"],
+  plugins: ["@typescript-eslint", "svelte3"],
   root: true,
   overrides: [
     {
@@ -20,6 +20,10 @@ module.exports = {
         // override/add rules settings here, such as:
         // "astro/no-set-html-directive": "error"
       },
+    },
+    {
+      files: ["*.svelte"],
+      processor: "svelte3/svelte3",
     },
   ],
 };
