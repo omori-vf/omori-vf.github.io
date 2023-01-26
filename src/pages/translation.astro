@@ -1,4 +1,5 @@
 ---
+import { Trans } from "astro-i18next/components";
 import { t, changeLanguage } from "i18next";
 import Frame from "../components/Frame.astro";
 import Layout from "../layouts/Layout.astro";
@@ -7,5 +8,49 @@ changeLanguage("fr");
 ---
 
 <Layout title={t("translation.title")}>
-  <Frame><p>{t("translation.title")}</p></Frame>
+  <Frame>
+    <section>
+      <h1>{t("translation.title")}</h1>
+      <Trans i18nKey="translation.about">
+        <p>Notre patch de traduction française du jeu OMORI, c'est :</p>
+        <ul>
+          <li>13130 répliques traduites</li>
+          <li>163 images traduites</li>
+          <li>1 fichier audio traduit</li>
+          <li>Une centaine de fichiers Javascript adaptés et rajoutés</li>
+          <li>3 vidéos traduites (+ 1 bande-annonce)</li>
+          <li>2 polices d'écriture modifiées</li>
+        </ul>
+        <p>... Et quelques œuvres de l'équipe de traduction en bonus</p>
+        <p>
+          Nous avons fait de notre mieux pour que notre travail soit le plus
+          minutieux pour vous proposer une traduction de qualité et la meilleure
+          expérience de jeu.
+        </p>
+        <p>
+          Tout cela a été possible en partie grâce aux nombreuses suggestions
+          reçues de la part de la communauté. Merci à vous.
+        </p>
+      </Trans>
+    </section>
+  </Frame>
 </Layout>
+
+<style>
+  h1 + * {
+    margin-top: var(--spacing-m);
+  }
+
+  section {
+    padding: 0 var(--spacing-l) var(--spacing-l);
+  }
+
+  ul {
+    padding-left: var(--spacing-m);
+    margin-bottom: 0;
+  }
+
+  ul + * {
+    margin-top: var(--spacing-m-em);
+  }
+</style>
