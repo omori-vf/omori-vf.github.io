@@ -11,6 +11,7 @@ changeLanguage("fr");
   <Frame>
     <section>
       <h1>{t("translation.title")}</h1>
+
       <Trans i18nKey="translation.about">
         <p>Notre patch de traduction française du jeu OMORI, c'est :</p>
         <ul>
@@ -22,6 +23,7 @@ changeLanguage("fr");
           <li>2 polices d'écriture modifiées</li>
         </ul>
         <p>... Et quelques œuvres de l'équipe de traduction en bonus</p>
+        <img src="/img/forêt_bûchiole.jpg" />
         <p>
           Nous avons fait de notre mieux pour que notre travail soit le plus
           minutieux pour vous proposer une traduction de qualité et la meilleure
@@ -37,12 +39,14 @@ changeLanguage("fr");
 </Layout>
 
 <style>
-  h1 + * {
-    margin-top: var(--spacing-m);
+  section {
+    display: flex;
+    flex-direction: column;
+    padding: 0 var(--spacing-l) var(--spacing-l);
   }
 
-  section {
-    padding: 0 var(--spacing-l) var(--spacing-l);
+  h1 + * {
+    margin-top: var(--spacing-m);
   }
 
   ul {
@@ -51,6 +55,19 @@ changeLanguage("fr");
   }
 
   ul + * {
+    margin-top: var(--spacing-m-em);
+  }
+
+  img {
+    width: 100%;
+    max-width: 720px;
+    max-height: 408px;
+    aspect-ratio: 16 / 9;
+    margin-inline: auto;
+    object-fit: cover;
+  }
+
+  img + p {
     margin-top: var(--spacing-m-em);
   }
 </style>
