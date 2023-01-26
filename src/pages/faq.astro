@@ -9,7 +9,7 @@ changeLanguage("fr");
 
 <Layout title={t("faq.title")}>
   <Frame>
-    <div class="faq-content">
+    <section>
       <h1>FAQ</h1>
       <ol>
         <li>
@@ -119,19 +119,19 @@ changeLanguage("fr");
           </p>
         </li>
       </ol>
-    </div>
+    </section>
   </Frame>
 </Layout>
 
 <style>
-  .faq-content {
-    padding-left: var(--spacing-l);
+  section {
+    padding: 0 var(--spacing-l) var(--spacing-l);
   }
 
   ol {
     font-size: var(--font-size-n);
     list-style: decimal;
-    padding: 0;
+    padding-left: var(--spacing-m);
     margin: 0;
   }
 

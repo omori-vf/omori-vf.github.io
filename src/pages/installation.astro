@@ -7,5 +7,15 @@ changeLanguage("fr");
 ---
 
 <Layout title={t("installation.title")}>
-  <Frame><p>{t("installation.title")}</p></Frame>
+  <Frame><section><h1>{t("installation.title")}</h1></section></Frame>
 </Layout>
+
+<style>
+  section {
+    padding: 0 var(--spacing-l) var(--spacing-l);
+  }
+
+  h1 + * {
+    margin-top: var(--spacing-m);
+  }
+</style>
