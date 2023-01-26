@@ -19,7 +19,16 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <img class="logo" src="/omori-vf.svg" alt="OMORI Version Française" />
+    <div class="logo-container">
+      <img class="logo" src="/omori-vf.svg" alt="OMORI Version Française" />
+      <button id="light" class="light-button"
+        ><img
+          class="lightbulb"
+          src="/img/lightbulb.png"
+          alt="Lightbulb"
+        /></button
+      >
+    </div>
     <Navbar />
     <main>
       <slot />
@@ -31,7 +40,7 @@ const { title } = Astro.props;
         src: url("/fonts/OMORI_GAME2.woff2") format("woff2");
       }
 
-      :root {
+      body {
         --black: hsl(0, 0%, 0%);
         --white: hsl(0, 0%, 87%);
         --red: hsl(6, 82%, 53%);
@@ -39,8 +48,8 @@ const { title } = Astro.props;
         --purple: hsl(299, 75%, 76%);
         --blue: hsl(255, 96%, 38%);
 
-        --background: var(--black);
-        --color: var(--white);
+        --background: var(--white);
+        --color: var(--black);
 
         --font-size-n: 24px;
         --font-size-m: 32px;
@@ -62,24 +71,14 @@ const { title } = Astro.props;
         --content-max-width: 900px;
       }
 
-      @media (prefers-color-scheme: light) {
-        :root {
-          --background: var(--white);
-          --color: var(--black);
-        }
-      }
-
-      @media screen and (-ms-high-contrast: active) {
-        :root {
-          --white: #fff;
-          --black: #000;
-        }
+      .dark-theme {
+        --background: var(--black);
+        --color: var(--white);
       }
 
       html {
         font-family: "omori", sans-serif;
-        background: var(--background);
-        color: var(--color);
+
         height: 100%;
         width: 100%;
       }
@@ -93,6 +92,8 @@ const { title } = Astro.props;
         font-size: var(--font-size-n);
         margin: 0;
         cursor: url("/images/icons/cursor.png"), auto;
+        background: var(--background);
+        color: var(--color);
       }
 
       main {
@@ -137,16 +138,41 @@ const { title } = Astro.props;
         box-sizing: border-box;
       }
 
+      .logo-container {
+        width: 100%;
+        max-width: var(--content-max-width);
+        display: grid;
+        grid-template: auto / 1fr auto 1fr;
+        justify-content: center;
+      }
+
       .logo {
+        grid-column: 2 / 3;
         height: 100px;
         filter: invert(15%);
         margin: var(--spacing-m) 0;
+        justify-self: center;
       }
 
-      @media (prefers-color-scheme: dark) {
-        .logo {
-          filter: invert(85%);
-        }
+      .light-button {
+        justify-self: flex-end;
+        margin-right: 25px;
+        padding: 0;
+        background: unset;
+        border: none;
+        height: min-content;
+      }
+
+      .lightbulb {
+        height: 80px;
+      }
+
+      .dark-theme .logo {
+        filter: invert(85%);
+      }
+
+      .dark-theme .lightbulb {
+        filter: invert(85%);
       }
 
       .frame-outer {
@@ -174,4 +200,36 @@ const { title } = Astro.props;
       }
     </style>
   </body>
+  <script>
+    const darkModeCss = "dark-theme";
+    const darkModeStateKey = "dark";
+
+    const setDarkMode = () => {
+      document.body.classList.add(darkModeCss);
+      window.localStorage.setItem(darkModeStateKey, "true");
+    };
+
+    const setLightMode = () => {
+      document.body.classList.remove(darkModeCss);
+      window.localStorage.setItem(darkModeStateKey, "false");
+    };
+
+    const state = window.localStorage.getItem(darkModeStateKey);
+    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+    if (state === "true" || (state == null && prefersDarkScheme.matches)) {
+      setDarkMode();
+    } else {
+      setLightMode();
+    }
+
+    const button = document.getElementById("light") as HTMLButtonElement;
+    button.addEventListener("click", () => {
+      if (document.body.classList.contains(darkModeCss)) {
+        setLightMode();
+      } else {
+        setDarkMode();
+      }
+    });
+  </script>
 </html>
