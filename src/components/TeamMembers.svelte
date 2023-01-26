@@ -23,13 +23,13 @@
         <img class="background" src={selectedMember.backgroundUri} alt="" />
         <div
           class="picture-container"
-          style="align-items: {selectedMember.picturePlacement ?? 'center'};"
+          style="align-items: {selectedMember.picturePlacement ?? 'flex-end'};"
         >
           <img
             class="picture"
             src={selectedMember.pictureUri}
             alt=""
-            style="flex: 1 0 {selectedMember.pictureWidthPercent ?? 100}%;"
+            style="flex: 1 0 {selectedMember.pictureWidthPercent ?? 160}%;"
           />
         </div>
       {/if}
@@ -73,9 +73,9 @@
 <style>
   .section-team {
     display: grid;
-    grid-template: min-content auto / minmax(0, 1fr) minmax(0, 1fr);
-    min-height: 600px;
+    grid-template: min-content 500px / minmax(0, 1fr) minmax(0, 1fr);
     gap: var(--spacing-xs);
+    overflow: hidden;
   }
 
   .section-team > div:first-child {
