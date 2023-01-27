@@ -6,6 +6,6 @@ import svelte from "@astrojs/svelte";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://omori-vf.github.io/",
-  integrations: [astroI18next(), svelte()]
+  site: "https://www.omori-en-francais.com/",
+  integrations: [astroI18next(), svelte()],
 });
