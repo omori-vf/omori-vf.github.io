@@ -32,6 +32,8 @@
             style="flex: 1 0 {selectedMember.pictureWidthPercent ?? 160}%;"
           />
         </div>
+      {:else}
+        <img class="team" src="/img/team.png" alt="" />
       {/if}
     </div>
   </div>
@@ -121,6 +123,7 @@
     padding: 0;
   }
 
+  .team,
   .background {
     grid-row: 1 / 2;
     grid-column: 1 / 2;
