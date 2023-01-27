@@ -2,12 +2,13 @@
 export interface Props {
   title: string;
   link: string;
+  class: string;
 }
 
-const { title, link } = Astro.props;
+const { title, link, class: className } = Astro.props;
 ---
 
-<li>
+<li class={className}>
   <a data-text={title} href={link}>{title}</a>
 </li>
 

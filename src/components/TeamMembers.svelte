@@ -144,6 +144,7 @@
 
   .team {
     width: 100%;
+    object-fit: cover;
   }
 
   .picture-container {
