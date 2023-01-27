@@ -85,7 +85,7 @@
       },
       {
         "question": "Comment puis-je désinstaller le patch ?",
-        "answer": "Le plus simple est encore de passer par Steam ! En faisant un clic droit sur le jeu depuis votre bibliothèque Steam, puis en allant dans \"Propriétés\". Cliquer ensuite sur le bouton \"Vérifier l'intégrité des fichiers du jeu...\" qui se trouve dans la rubrique \"Fichiers locaux\". Steam va automatiquement rétablir les fichiers originaux, désinstallant de ce même fait notre patch.<div class=\"centered-img\"><img class=\"content-image\" src=\"img/faq/uninstall.gif\" alt=\"uninstall procedure\"/></div>"
+        "answer": "Le plus simple est encore de passer par Steam ! En faisant un clic droit sur le jeu depuis votre bibliothèque Steam, puis en allant dans \"Propriétés\". Cliquer ensuite sur le bouton \"Vérifier l'intégrité des fichiers du jeu...\" qui se trouve dans la rubrique \"Fichiers locaux\". Steam va automatiquement rétablir les fichiers originaux, désinstallant de ce même fait notre patch.<div class=\"centered-img\"><img class=\"content-image\" src=\"/img/faq/uninstall.gif\" alt=\"uninstall procedure\"/></div>"
       }
     ]
   },
