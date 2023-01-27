@@ -46,15 +46,48 @@
   },
   "faq": {
     "title": "FAQ",
-    "q1": "faq.q1",
-    "q2": "faq.q2",
-    "q3": "faq.q3",
-    "q4": "faq.q4",
-    "q5": "faq.q5",
-    "q6": "faq.q6",
-    "q7": "faq.q7",
-    "q8": "faq.q8",
-    "q9": "faq.q9"
+    "entries": [
+      {
+        "question": "Dois-je acheter le jeu pour utiliser le patch ?",
+        "answer": "Il faut acheter le jeu sur <a target=\"_blank\" href=\"https://store.steampowered.com/app/1150690/OMORI/\">Steam</a> pour pouvoir utiliser le patch. Le jeu et le patch sont compatibles sur Windows, MacOS et Linux."
+      },
+      {
+        "question": "Comment télécharger le patch ? Est-ce gratuit ?",
+        "answer": "Le jeu est payant, mais notre patch de traduction est gratuit. Si on vous demande de payer pour l'obtenir, vous êtes victime d'une arnaque. Pour le télécharger, suivez la procédure indiquée dans l'onglet <a href=\"./installation\">Installation</a> du site."
+      },
+      {
+        "question": "J'ai trouvé une erreur, comment la signaler ?",
+        "answer": "Nous t'invitons à rejoindre notre serveur <a target=\"_blank\" href=\"https://discord.gg/omorifr\">Discord</a> et à signaler l'erreur dans le salon #traduction avec une capture d'écran et les conditions dans lesquelles l'erreur/bug survient."
+      },
+      {
+        "question": "Comment vous contacter ?",
+        "answer": "Vous serez le plus susceptible de recevoir une réponse rapide sur notre serveur <a target=\"_blank\" href=\"https://discord.gg/omorifr\">Discord</a> mais vous pouvez aussi nous contacter via <a target=\"_blank\" href=\"https://twitter.com/OMORIVF\">Twitter</a> ou par mail à l'adresse omorivf@gmail.com"
+      },
+      {
+        "question": "Êtes-vous affiliés à OMOCAT, LLC ?",
+        "answer": "Ce patch de traduction est non-officiel. Nous ne sommes pas affiliés à OMOCAT, LLC dont OMORI © est la propriété. Nous désirons seulement rendre le jeu accessible à plus de monde. C'est un projet créé par des fans, pour des fans."
+      },
+      {
+        "question": "Le patch marche-t-il sur console/Xbox Game Pass ?",
+        "answer": "Malheureusement non. Les versions Xbox possèdent néanmoins un patch directement intégré au jeu que nous n'avons pas réalisé."
+      },
+      {
+        "question": "Puis-je faire un don pour vous remercier ?",
+        "answer": "Merci pour votre soutien mais ce n'est pas possible. Ce projet est à but non-lucratif, nous ne pouvons et ne voulons donc pas être rémunérés, même par des dons. Si vous souhaitez nous soutenir, parlez de ce projet autour de vous !"
+      },
+      {
+        "question": "Mon antivirus me dit que le patch en contient un, que faire ?",
+        "answer": "Notre patch est totalement dénué de virus."
+      },
+      {
+        "question": "Est-ce que je peux faire un let's play avec votre traduction ?",
+        "answer": "Oui ! Et cela nous ferait même plaisir. Il paraît même que vous pourriez nous créditer en description ou en début de vidéo/stream !"
+      },
+      {
+        "question": "Comment puis-je désinstaller le patch ?",
+        "answer": "Le plus simple est encore de passer par Steam ! En faisant un clic droit sur le jeu depuis votre bibliothèque Steam, puis en allant dans \"Propriétés\". Cliquer ensuite sur le bouton \"Vérifier l'intégrité des fichiers du jeu...\" qui se trouve dans la rubrique \"Fichiers locaux\". Steam va automatiquement rétablir les fichiers originaux, désinstallant de ce même fait notre patch.<div class=\"centered-img\"><img src=\"img/faq/uninstall.gif\" alt=\"uninstall procedure\"/></div>"
+      }
+    ]
   },
   "terms": {
     "here": "ici",
