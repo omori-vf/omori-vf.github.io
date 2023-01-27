@@ -7,7 +7,7 @@ import FAQEntry from "../components/FAQEntry.svelte";
 
 <Layout title={t("faq.title")}>
   <Frame>
-    <section>
+    <section class="content">
       <h1>{t("faq.title")}</h1>
       <ol>
         {
@@ -38,13 +38,8 @@ import FAQEntry from "../components/FAQEntry.svelte";
   </style>
 
   <style>
-    section {
-      padding: 0 var(--spacing-l) var(--spacing-l);
-    }
-
     ol {
       margin: var(--spacing-m) 0 0;
-      padding-left: var(--spacing-m);
     }
   </style>
 </Layout>

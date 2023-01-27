@@ -6,7 +6,7 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title={t("installation.title")}>
   <Frame>
-    <section>
+    <section class="content">
       <h1>{t("installation.title")}</h1>
       <p>{t("installation.p1")}</p>
       <ol>
@@ -46,12 +46,6 @@ import Layout from "../layouts/Layout.astro";
     align-self: center;
     margin-top: 10px;
     margin-bottom: 10px;
-  }
-
-  section {
-    display: flex;
-    flex-direction: column;
-    padding: 0 var(--spacing-l) var(--spacing-l);
   }
 
   h1 + * {
