@@ -75,13 +75,24 @@
 <style>
   .section-team {
     display: grid;
-    grid-template: min-content 500px / minmax(0, 1fr) minmax(0, 1fr);
-    gap: var(--spacing-xs);
+    grid-template: auto auto auto / auto;
+    gap: 2px;
     overflow: hidden;
   }
 
   .section-team > div:first-child {
-    grid-row: 1 / 3;
+    overflow: hidden;
+  }
+
+  @media screen and (min-width: 420px) {
+    .section-team {
+      gap: var(--spacing-xs);
+      grid-template: min-content 500px / minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .section-team > div:first-child {
+      grid-row: 1 / 3;
+    }
   }
 
   .about {
@@ -93,6 +104,7 @@
   .about button {
     margin-top: auto;
     align-self: flex-start;
+    padding-top: var(--spacing-m);
   }
 
   ul {
@@ -128,6 +140,10 @@
     grid-row: 1 / 2;
     grid-column: 1 / 2;
     height: 100%;
+  }
+
+  .team {
+    width: 100%;
   }
 
   .picture-container {

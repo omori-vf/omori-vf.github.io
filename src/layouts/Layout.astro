@@ -42,12 +42,6 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <div class="logo-container">
-      <img class="logo" src="/img/logo.png" alt="OMORI Version Française" />
-      <button id="light" class="light-button">
-        <img class="lightbulb" src="/img/lightbulb.png" alt="Lightbulb" />
-      </button>
-    </div>
     <Navbar />
     <main>
       <slot />
@@ -125,6 +119,15 @@ const { title } = Astro.props;
       h1,
       h2 {
         margin: 0;
+        font-weight: normal;
+      }
+
+      @media screen and (min-width: 420px) {
+        h1,
+        h2 {
+          margin: 0;
+          font-weight: normal;
+        }
       }
 
       h1 {
@@ -158,46 +161,6 @@ const { title } = Astro.props;
         box-sizing: border-box;
       }
 
-      .logo-container {
-        width: 100%;
-        max-width: var(--content-max-width);
-        display: grid;
-        grid-template: auto / 1fr auto 1fr;
-        justify-content: center;
-      }
-
-      .logo {
-        grid-column: 2 / 3;
-        height: 100px;
-        filter: invert(85%);
-        margin: var(--spacing-m) 0;
-        justify-self: center;
-        transition: filter 1s ease;
-      }
-
-      .light-button {
-        justify-self: flex-end;
-        margin-right: 25px;
-        padding: 0;
-        background: unset;
-        border: none;
-        height: min-content;
-      }
-
-      .lightbulb {
-        height: 80px;
-        filter: invert(85%);
-        transition: filter 1s ease;
-      }
-
-      .light-theme .logo {
-        filter: invert(15%);
-      }
-
-      .light-theme .lightbulb {
-        filter: unset;
-      }
-
       .frame-outer {
         background: var(--black);
         color: var(--white);
@@ -223,27 +186,4 @@ const { title } = Astro.props;
       }
     </style>
   </body>
-  <script>
-    const lightModeCss = "light-theme";
-    const lightModeStateKey = "light";
-
-    const setLightMode = () => {
-      document.documentElement.classList.add(lightModeCss);
-      window.localStorage.setItem(lightModeStateKey, "true");
-    };
-
-    const setDarkMode = () => {
-      document.documentElement.classList.remove(lightModeCss);
-      window.localStorage.setItem(lightModeStateKey, "false");
-    };
-
-    const button = document.getElementById("light") as HTMLButtonElement;
-    button.addEventListener("click", () => {
-      if (document.documentElement.classList.contains(lightModeCss)) {
-        setDarkMode();
-      } else {
-        setLightMode();
-      }
-    });
-  </script>
 </html>
