@@ -84,7 +84,7 @@
     overflow: hidden;
   }
 
-  @media screen and (min-width: 420px) {
+  @media screen and (min-width: 500px) {
     .section-team {
       gap: var(--spacing-xs);
       grid-template: min-content 500px / minmax(0, 1fr) minmax(0, 1fr);
