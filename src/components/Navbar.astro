@@ -27,7 +27,11 @@ const navItems = [
   <div id="menu-items" class="menu-container">
     <Frame>
       <ul>
-        {navItems.map((v) => <NavItem title={t(v.title)} link={v.link} />)}
+        {
+          navItems.map((v) => (
+            <NavItem class="nav-item" title={t(v.title)} link={v.link} />
+          ))
+        }
       </ul>
     </Frame>
   </div>
@@ -127,6 +131,10 @@ const navItems = [
     justify-content: space-around;
   }
 
+  .nav-item + .nav-item {
+    margin-top: var(--spacing-s);
+  }
+
   @media screen and (min-width: 420px) {
     .menu-container {
       position: unset;
@@ -142,6 +150,10 @@ const navItems = [
     .checkbox,
     .hamburger-lines {
       display: none;
+    }
+
+    .nav-item + .nav-item {
+      margin-top: 0;
     }
   }
 

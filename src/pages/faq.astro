@@ -2,42 +2,49 @@
 import { t } from "i18next";
 import Frame from "../components/Frame.astro";
 import Layout from "../layouts/Layout.astro";
-import FAQ from "../components/FAQ.astro";
+import FAQEntry from "../components/FAQEntry.svelte";
 ---
 
 <Layout title={t("faq.title")}>
   <Frame>
-    <h1>{t("faq.title")}</h1>
-    <FAQ />
+    <section>
+      <h1>{t("faq.title")}</h1>
+      <ol>
+        {
+          (
+            t("faq.entries", { returnObjects: true }) as {
+              question: string;
+              answer: string;
+            }[]
+          ).map((item) => (
+            <FAQEntry question={item.question} answer={item.answer} />
+          ))
+        }
+      </ol>
+    </section>
   </Frame>
 
+  <style is:inline>
+    div.centered-img {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: var(--spacing-s);
+    }
+
+    .faq-list-item + .faq-list-item {
+      margin: var(--spacing-m-em) 0 0;
+    }
+  </style>
+
   <style>
-    .faq-content {
-      padding-left: var(--spacing-l);
+    section {
+      padding: 0 var(--spacing-l) var(--spacing-l);
     }
 
     ol {
-      font-size: var(--font-size-n);
-      list-style: decimal;
-      padding: 0;
-      margin: 0;
-    }
-
-    h1 + * {
-      margin-top: var(--spacing-m);
-    }
-
-    li + li {
-      margin-top: var(--spacing-m-em);
-    }
-
-    li {
-      font-weight: var(--font-weight-bold);
-      font-size: var(--font-size-n);
-    }
-
-    li > p {
-      font-weight: var(--font-weight-n);
+      margin: var(--spacing-m) 0 0;
+      padding-left: var(--spacing-m);
     }
   </style>
 </Layout>
