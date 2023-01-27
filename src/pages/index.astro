@@ -1,11 +1,9 @@
 ---
-import { t, changeLanguage } from "i18next";
+import { t } from "i18next";
 import Layout from "../layouts/Layout.astro";
 import { Trans } from "astro-i18next/components";
 import Frame from "../components/Frame.astro";
 import { YouTube } from "@astro-community/astro-embed-youtube";
-
-changeLanguage("fr");
 ---
 
 <Layout title={t("index.welcome")}>
