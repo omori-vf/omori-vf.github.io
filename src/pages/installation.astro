@@ -1,4 +1,5 @@
 ---
+import { Trans } from "astro-i18next/components";
 import { t } from "i18next";
 import Frame from "../components/Frame.astro";
 import Layout from "../layouts/Layout.astro";
@@ -34,8 +35,9 @@ import Layout from "../layouts/Layout.astro";
       </p>
 
       <p>
-        {t("installation.issue")}
-        <a href="">{t("terms.here")}</a>. {t("installation.help_contact")}
+        <Trans i18nKey="installation.issue">
+          <a target='\"_blank\"' href="https://discord.gg/omorifr">Discord</a>
+        </Trans>
       </p>
     </section>
   </Frame>
