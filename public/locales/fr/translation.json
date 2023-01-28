@@ -8,7 +8,7 @@
   },
   "index": {
     "welcome": "Bienvenue",
-    "welcome_text": "Bienvenue sur le site de la traduction non-officielle d'OMORI. Ce projet amateur  a demandé la collaboration et la cohésion d'une équipe de 9 personnes, ainsi que 13 bêta-testeurs. Il s'est étendu sur presque deux ans et a nécessité des centaines d'heure de travail. Cette traduction a été créée par des fans, pour des fans. Nous espérons vous faire (re)découvrir le jeu qui nous a tous fait vibrer !",
+    "welcome_text": "Bienvenue sur le site de la traduction non-officielle d'OMORI. Ce projet amateur  a demandé la collaboration et la cohésion d'une équipe de 9 personnes, ainsi que 13 bêta-testeurs. Il s'est étendu sur presque deux ans et a nécessité des centaines d'heures de travail. Cette traduction a été créée par des fans, pour des fans. Nous espérons vous faire (re)découvrir le jeu qui nous a tous fait vibrer !",
     "disclaimer": "Avertissement",
     "introduction": "Nous ne sommes pas affiliés, associés, autorisés, endossés par, ou en aucune façon officiellement liés à OMOCAT, ou l’une de ses filiales. Le site officiel d’OMORI peut être trouvé à <0>https://www.omori-game.com</0>."
   },
@@ -86,6 +86,10 @@
       {
         "question": "Le patch français est-il compatible avec une sauvegarde originale en anglais ? (et vice-versa)",
         "answer": "Malheureusement, non. En raison d'un choix de traduction, nous avons adapté un aspect crucial du jeu pour qu'il corresponde au français. Passer d'une langue à l'autre peut amener dans certains cas des incohérences. Pour cette raison, nous déconseillons le passage d'une langue à l'autre pour une même sauvegarde."
+      },
+      {
+        "question": "Pourquoi avez-vous traduit tel nom de cette manière ?",
+        "answer": "Ce serait un plaisir de te répondre, nous t'invitons à aller sur le salon #discussion-traduction de notre serveur <a target=\"_blank\" href=\"https://discord.gg/omorifr\">Discord</a> pour poser ta question ! Ceci dit, ça ne vaut pas la peine de contester telle ou telle décision."
       },
       {
         "question": "Comment puis-je désinstaller le patch ?",
