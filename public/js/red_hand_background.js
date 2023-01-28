@@ -72,7 +72,7 @@ class RedHand {
     static animation_height = 20;
     static animation_update_time_rate = 100; // Every 100ms, update the animation
     static target_update_time_rate = 100; // Every 300ms, update the target (wandering behavior)
-    static speed = 4;
+    static speed = 3;
     static max_force = 0.15;
     static nb_red_hands = 20;
     static target_margin = 100; // Spawn targets inside the screen (100px margin) so red hand doesn't get off screen for too long
