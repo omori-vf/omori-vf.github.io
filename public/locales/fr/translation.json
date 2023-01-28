@@ -84,6 +84,10 @@
         "answer": "Oui ! Et cela nous ferait même plaisir. Il paraît même que vous pourriez nous créditer en description ou en début de vidéo/stream !"
       },
       {
+        "question": "Le patch français est-il compatible avec une sauvegarde originale en anglais ? (et vice-versa)",
+        "answer": "Malheureusement, non. En raison d'un choix de traduction, nous avons adapté un aspect crucial du jeu pour qu'il corresponde au français. Passer d'une langue à l'autre peut amener dans certains cas des incohérences. Pour cette raison, nous déconseillons le passage d'une langue à l'autre pour une même sauvegarde."
+      },
+      {
         "question": "Comment puis-je désinstaller le patch ?",
         "answer": "Le plus simple est encore de passer par Steam ! En faisant un clic droit sur le jeu depuis votre bibliothèque Steam, puis en allant dans \"Propriétés\". Cliquer ensuite sur le bouton \"Vérifier l'intégrité des fichiers du jeu...\" qui se trouve dans la rubrique \"Fichiers locaux\". Steam va automatiquement rétablir les fichiers originaux, désinstallant de ce même fait notre patch.<div class=\"centered-img\"><img class=\"content-image\" src=\"/img/faq/uninstall.gif\" alt=\"uninstall procedure\"/></div>"
       }
