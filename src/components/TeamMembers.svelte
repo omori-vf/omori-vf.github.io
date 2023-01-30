@@ -33,7 +33,7 @@
           />
         </div>
       {:else}
-        <img class="team" src="/img/team.png" alt="" />
+        <img class="team" src="/img/team.webp" alt="" />
       {/if}
     </div>
   </div>
