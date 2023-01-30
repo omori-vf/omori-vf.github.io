@@ -10,5 +10,14 @@ import compress from "astro-compress";
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.omori-en-francais.com/",
-  integrations: [astroI18next(), svelte(), compress()]
+  integrations: [
+    astroI18next(),
+    svelte(),
+    compress({
+      img: {
+        webp: false,
+        png: true,
+      },
+    }),
+  ],
 });
