@@ -1,11 +1,4 @@
-# Welcome to [Astro](https://astro.build)
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/s/github/withastro/astro/tree/latest/examples/basics)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![basics](https://user-images.githubusercontent.com/4677417/186188965-73453154-fdec-4d6b-9c34-cb35c248ae5b.png)
+# Omori Version Français
 
 ## 🚀 Project Structure
 
@@ -78,4 +71,30 @@ Enable eslint and prettier for astro `.vscode/settings.json`:
   }
 }
 
+```
+
+## WebP Settings used
+
+PNG:
+
+```PS
+Get-ChildItem -Recurse -File -filter *.png | ForEach-Object {& cwebp $_.FullName -m 6 -q 100 -mt -o "$($_.FullName.Substring(0, $_.FullName.length-3))webp" }
+```
+
+PNG BG:
+
+```PS
+Get-ChildItem -Recurse -File -filter *_bg.png | ForEach-Object {& cwebp $_.FullName -m 6 -alpha_q 0 -q 50 -mt -o "$($_.FullName.Substring(0, $_.FullName.length-3))webp" }
+```
+
+GIF:
+
+```PS
+Get-ChildItem -Recurse -File -filter *.gif | ForEach-Object {& gif2webp $_.FullName -loop_compatibility -mt -lossy -m 6 -o "$($_.FullName.Substring(0, $_.FullName.length-3))webp" }
+```
+
+JPG:
+
+```PS
+Get-ChildItem -Recurse -File -filter *.jpg | ForEach-Object {& cwebp $_.FullName -m 6 -preset picture -mt -o "$($_.FullName.Substring(0, $_.FullName.length-3))webp" }
 ```
