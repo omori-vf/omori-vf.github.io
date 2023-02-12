@@ -1,6 +1,7 @@
 ---
 import i18next from "i18next";
 import Navbar from "../components/Navbar.astro";
+import RedHands from "../components/RedHands.astro";
 
 export interface Props {
   title: string;
@@ -42,40 +43,11 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <canvas id="canvas-background"> </canvas>
+    <RedHands />
     <Navbar />
     <main>
       <slot />
     </main>
-
-    <style>
-      canvas {
-        display: none;
-        z-index: -1;
-        position: absolute;
-        background: var(--background);
-        width: 100%;
-        height: 100%;
-        transition: background 1s ease;
-      }
-
-      canvas.size-handled {
-        width: auto;
-        height: auto;
-      }
-
-      @media screen and (min-width: 900px) {
-        canvas {
-          display: initial;
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        canvas {
-          display: none;
-        }
-      }
-    </style>
 
     <style is:global>
       @font-face {
@@ -246,5 +218,3 @@ const { title } = Astro.props;
     </style>
   </body>
 </html>
-
-<script is:inline src="/js/red_hand_background.js"></script>
