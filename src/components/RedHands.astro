@@ -112,10 +112,10 @@
     static target_update_time_rate = 300; // Every 300ms, update the target (wandering behavior)
 
     static speed = 3;
-    static steering_force = 0.025;
+    static steering_force = 0.03;
 
     static nb_red_hands = 20;
-    static target_margin = 50; // Spawn targets inside the screen (50px margin) so red hand doesn't get off screen for too long
+    static target_margin = 200; // Spawn targets inside the screen so red hand doesn't get off screen for too long
 
     position = RedHand.get_random_position();
     velocity = new Vector2D();
@@ -191,6 +191,7 @@
 
     move(elapsed_time: number) {
       this.velocity.add(this.acceleration);
+
       this.velocity.fixedMagnitude(
         RedHand.relative_value(RedHand.speed, elapsed_time)
       );
