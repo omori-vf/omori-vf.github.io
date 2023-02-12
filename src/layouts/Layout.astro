@@ -1,12 +1,14 @@
 ---
 import i18next from "i18next";
 import Navbar from "../components/Navbar.astro";
+import { SEO } from "astro-seo";
 
 export interface Props {
   title: string;
+  description: string;
 }
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -39,7 +41,7 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <SEO title={title} description={description} />
   </head>
   <body>
     <canvas id="canvas-background"> </canvas>
@@ -244,7 +246,6 @@ const { title } = Astro.props;
         text-align: justify;
       }
     </style>
+    <script is:inline src="/js/red_hand_background.js"></script>
   </body>
 </html>
-
-<script is:inline src="/js/red_hand_background.js"></script>

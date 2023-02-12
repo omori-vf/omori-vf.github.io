@@ -7,6 +7,8 @@
     "installation": "Installation"
   },
   "index": {
+    "title": "OMORI en français",
+    "description": "Le site de la traduction française non-officielle d'OMORI, OMORI patch français, OMORI version française, OMORI FR",
     "welcome": "Bienvenue",
     "welcome_text": "Bienvenue sur le site de la traduction non-officielle d'OMORI. Ce projet amateur a demandé la collaboration et la cohésion d'une équipe de 9 personnes, ainsi que 13 bêta-testeurs. Il s'est étendu sur presque deux ans et a nécessité des centaines d'heures de travail. Cette traduction a été créée par des fans, pour des fans. Nous espérons vous faire (re)découvrir le jeu qui nous a tous fait vibrer !",
     "disclaimer": "Avertissement",
@@ -14,6 +16,7 @@
   },
   "installation": {
     "title": "Installation",
+    "description": "La procédure d'installation pour le patch français d'OMORI",
     "p1": "Voici la procédure d'installation pour le patch FR d'OMORI :",
     "steps": {
       "step1": "Si ça n'est pas déjà fait, installer OMORI avec Steam.",
@@ -27,6 +30,7 @@
   },
   "team": {
     "title": "Équipe",
+    "description": "Tous les membres de l'équipe qui ont contribué à la création de la traduction de la version française non-officielle d'OMORI.",
     "menuTitle": "INFOS ENNEMIS !",
     "back": "RETOUR",
     "ylovoir": "Initiateur du projet et benjamin traducteur. Attention: ne pas lui parler de langues.<br /> - YLOVOIR<br /><br />Il raconte très bien la blague de la grosse mite !<br /> - MEROKO<br /><br />Potentiel en doublage impressionnant. Prévoir une distance avec le micro.<br /> - COLZA<br /><br />Mauvais en dates, meilleur en tchatche.<br /> - NOFALL",
@@ -41,10 +45,12 @@
   },
   "translation": {
     "title": "Traduction",
+    "description": "Comment la création de la version française non-officielle d'OMORI a été faite",
     "about": "<0>Notre patch de traduction française du jeu OMORI, c'est :</0><1><2>13130 répliques traduites</2><3>163 images traduites</3><4>1 fichier audio traduit</4><5>Une centaine de fichiers Javascript adaptés et rajoutés</5><6>3 vidéos traduites (+ 1 bande-annonce)</6><7>2 polices d'écriture modifiées</7></1><8>... Et quelques œuvres de l'équipe de traduction en bonus</8><9><10>Nous avons fait de notre mieux pour que notre travail soit le plus minutieux pour vous proposer une traduction de qualité et la meilleure expérience de jeu.</10><11>Tout cela a été possible en partie grâce aux nombreuses suggestions reçues de la part de la communauté. Merci à vous.</11>"
   },
   "faq": {
     "title": "FAQ",
+    "description": "Foire aux questions pour la version française non-officielle d'OMORI",
     "entries": [
       {
         "question": "Dois-je acheter le jeu pour utiliser le patch ?",

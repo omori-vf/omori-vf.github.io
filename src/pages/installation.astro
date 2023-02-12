@@ -5,7 +5,10 @@ import Frame from "../components/Frame.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title={t("installation.title")}>
+<Layout
+  title={t("installation.title")}
+  description={t("installation.description")}
+>
   <Frame>
     <section class="content">
       <h1>{t("installation.title")}</h1>
