@@ -234,17 +234,16 @@
     }
   }
 
-  function init_canvas() {
+  function init_canvas(height: number) {
     canvas = document.getElementById("canvas-background") as HTMLCanvasElement;
-    canvas.classList.add("size-handled");
     ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
     canvas.width = document.body.scrollWidth;
-    canvas.height = document.documentElement.scrollHeight;
+    canvas.height = height;
   }
 
   window.addEventListener("load", () => {
-    init_canvas();
+    init_canvas(document.documentElement.scrollHeight);
 
     RedHand.init();
     const red_hands: RedHand[] = [];
@@ -270,7 +269,10 @@
     requestAnimationFrame(loop);
   });
 
-  window.addEventListener("resize", () => {
-    init_canvas();
+  window.addEventListener("resize", (event: UIEvent) => {
+    init_canvas(
+      (event.target as Window)?.outerHeight ??
+        document.documentElement.scrollHeight
+    );
   });
 </script>
