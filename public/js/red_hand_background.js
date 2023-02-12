@@ -1,34 +1,38 @@
-let canvas, ctx;
+let canvas: HTMLCanvasElement;
+let ctx: CanvasRenderingContext2D;
 
-function random_integer(min, max) {
+function random_integer(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
 class Vector2D {
+  x: number;
+  y: number;
+
   constructor(x = 0, y = 0) {
     this.x = x;
     this.y = y;
   }
 
-  static add(vec1, vec2) {
+  static add(vec1: Vector2D, vec2: Vector2D) {
     return new Vector2D(vec1.x + vec2.x, vec1.y + vec2.y);
   }
 
-  add(vector) {
+  add(vector: Vector2D) {
     this.x += vector.x;
     this.y += vector.y;
   }
 
-  static sub(vec1, vec2) {
+  static sub(vec1: Vector2D, vec2: Vector2D) {
     return new Vector2D(vec1.x - vec2.x, vec1.y - vec2.y);
   }
 
-  sub(vector) {
+  sub(vector: Vector2D) {
     this.x -= vector.x;
     this.y -= vector.y;
   }
 
-  mul(scalar) {
+  mul(scalar: number) {
     this.x *= scalar;
     this.y *= scalar;
   }
@@ -42,9 +46,15 @@ class Vector2D {
     return new Vector2D(this.x, this.y);
   }
 
-  limit(max_magnitude) {
+  ceilingMagnitude(max_magnitude: number) {
+    const magnitude = this.magnitude();
     this.normalize();
-    this.mul(max_magnitude);
+    this.mul(Math.min(magnitude, max_magnitude));
+  }
+
+  fixedMagnitude(magnitude: number) {
+    this.normalize();
+    this.mul(magnitude);
   }
 
   magnitude() {
@@ -69,14 +79,24 @@ class RedHand {
   static animation_2 = document.createElement("img");
   static animation_width = 56;
   static animation_height = 20;
+  static standard_update_frequence = 1000 / 60;
+
   static animation_update_time_rate = 100; // Every 100ms, update the animation
-  static target_update_time_rate = 100; // Every 300ms, update the target (wandering behavior)
+  static target_update_time_rate = 300; // Every 300ms, update the target (wandering behavior)
+
   static speed = 3;
-  static max_force = 0.15;
+  static steering_force = 0.025;
+
   static nb_red_hands = 20;
-  static target_margin = 100; // Spawn targets inside the screen (100px margin) so red hand doesn't get off screen for too long
-  static wander_ring_distance = 200;
-  static wander_ring_radius = 50;
+  static target_margin = 50; // Spawn targets inside the screen (50px margin) so red hand doesn't get off screen for too long
+
+  position = RedHand.get_random_position();
+  velocity = new Vector2D();
+  acceleration = new Vector2D();
+  target = RedHand.get_random_target();
+  target_time = 0;
+  animation = RedHand.animation_1;
+  animation_time = 0;
 
   static init() {
     RedHand.animation_1.src = "/img/background/red_hand_animation_1.png";
@@ -103,58 +123,59 @@ class RedHand {
     );
   }
 
-  constructor() {
-    this.position = RedHand.get_random_position();
-    this.velocity = new Vector2D();
-    this.acceleration = new Vector2D();
-    this.target = RedHand.get_random_target();
-    this.target_time = 0;
-    this.animation = RedHand.animation_1;
-    this.animation_time = 0;
+  static relative_value(value: number, elapsed_time: number) {
+    return (value / RedHand.standard_update_frequence) * elapsed_time;
   }
 
-  apply_force(force) {
+  apply_force(force: Vector2D) {
     this.acceleration.add(force);
   }
 
-  update_target(elapsed_time) {
+  update_target(elapsed_time: number) {
     this.target_time += elapsed_time;
-    if (this.target_time > RedHand.target_update_time_rate)
+    if (this.target_time > RedHand.target_update_time_rate) {
       this.target = RedHand.get_random_target();
+      this.target_time = 0;
+    }
   }
 
-  update_animation(elapsed_time) {
+  update_animation(elapsed_time: number) {
     this.animation_time += elapsed_time;
     if (this.animation_time > RedHand.animation_update_time_rate) {
       this.animation =
         this.animation == RedHand.animation_1
           ? RedHand.animation_2
           : RedHand.animation_1;
+
       this.animation_time = 0;
     }
   }
 
-  seek_target(elapsed_time) {
-    let desired_vector = Vector2D.sub(this.target, this.position);
-    desired_vector.normalize();
-    desired_vector.mul(RedHand.speed * elapsed_time);
+  seek_target(elapsed_time: number) {
+    const desired_direction = Vector2D.sub(this.target, this.position);
 
-    let steering_force = Vector2D.sub(desired_vector, this.velocity);
-    steering_force.limit(RedHand.max_force);
+    const steering_force = Vector2D.sub(desired_direction, this.velocity);
+    steering_force.fixedMagnitude(
+      RedHand.relative_value(RedHand.steering_force, elapsed_time)
+    );
+
     this.apply_force(steering_force);
   }
 
-  move() {
+  move(elapsed_time: number) {
     this.velocity.add(this.acceleration);
-    this.velocity.limit(RedHand.speed);
+    this.velocity.fixedMagnitude(
+      RedHand.relative_value(RedHand.speed, elapsed_time)
+    );
+
     this.position.add(this.velocity);
     this.acceleration.reset();
   }
 
-  update(elapsed_time) {
+  update(elapsed_time: number) {
     this.update_target(elapsed_time);
     this.seek_target(elapsed_time);
-    this.move();
+    this.move(elapsed_time);
     this.update_animation(elapsed_time);
   }
 
@@ -182,9 +203,9 @@ class RedHand {
 }
 
 function init_canvas() {
-  canvas = document.getElementById("canvas-background");
+  canvas = document.getElementById("canvas-background") as HTMLCanvasElement;
   canvas.classList.add("size-handled");
-  ctx = canvas.getContext("2d");
+  ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
   canvas.width = document.body.scrollWidth;
   canvas.height = document.documentElement.scrollHeight;
@@ -194,13 +215,13 @@ window.addEventListener("load", () => {
   init_canvas();
 
   RedHand.init();
-  let red_hands = [];
+  const red_hands: RedHand[] = [];
   for (let i = 0; i < RedHand.nb_red_hands; ++i) red_hands.push(new RedHand());
 
-  let last_time;
-  let elapsed_time;
+  let last_time: number;
+  let elapsed_time: number;
 
-  function loop(current_time) {
+  function loop(current_time: number) {
     if (!last_time) last_time = current_time;
     elapsed_time = current_time - last_time;
     last_time = current_time;
