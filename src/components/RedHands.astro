@@ -1,0 +1,639 @@
+<canvas id="canvas-background"> </canvas>
+
+<style>
+    canvas {
+        display: none;
+        z-index: -1;
+        position: absolute;
+        background: var(--background);
+        width: 100%;
+        height: 100%;
+        transition: background 1s ease;
+    }
+
+    canvas.size-handled {
+        width: auto;
+        height: auto;
+    }
+
+    @media screen and (min-width: 900px) {
+        canvas {
+            display: initial;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        canvas {
+            display: none;
+        }
+    }
+</style>
+
+<script>
+    let canvas: HTMLCanvasElement;
+    let ctx: CanvasRenderingContext2D;
+
+    function random_integer(min: number, max: number) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    class Vector2D {
+        x: number;
+        y: number;
+
+        constructor(x = 0, y = 0) {
+            this.x = x;
+            this.y = y;
+        }
+
+        static add(vec1: Vector2D, vec2: Vector2D) {
+            return new Vector2D(vec1.x + vec2.x, vec1.y + vec2.y);
+        }
+
+        add(vector: Vector2D) {
+            this.x += vector.x;
+            this.y += vector.y;
+        }
+
+        static sub(vec1: Vector2D, vec2: Vector2D) {
+            return new Vector2D(vec1.x - vec2.x, vec1.y - vec2.y);
+        }
+
+        sub(vector: Vector2D) {
+            this.x -= vector.x;
+            this.y -= vector.y;
+        }
+
+        mul(scalar: number) {
+            this.x *= scalar;
+            this.y *= scalar;
+        }
+
+        reset() {
+            this.x = 0;
+            this.y = 0;
+        }
+
+        copy() {
+            return new Vector2D(this.x, this.y);
+        }
+
+        fixed_magnitude(magnitude: number) {
+            this.normalize();
+            this.mul(magnitude);
+        }
+
+        magnitude() {
+            return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
+        }
+
+        normalize() {
+            const magnitude = this.magnitude();
+            if (magnitude !== 0) {
+                this.x /= magnitude;
+                this.y /= magnitude;
+            }
+        }
+
+        normalized() {
+            return this.copy().normalize();
+        }
+    }
+
+    enum Direction {
+        Up,
+        Down,
+        Left,
+        Right,
+    }
+
+    function direction_to_string(direction: Direction) {
+        switch (direction) {
+            case Direction.Up:
+                return "up";
+            case Direction.Down:
+                return "down";
+            case Direction.Left:
+                return "left";
+            case Direction.Right:
+                return "right";
+        }
+    }
+
+    function int_to_direction(index: number) {
+        switch (index) {
+            case 0:
+                return Direction.Up;
+            case 1:
+                return Direction.Down;
+            case 2:
+                return Direction.Left;
+            case 3:
+                return Direction.Right;
+            default:
+                throw "Invalid index";
+        }
+    }
+
+    class Omori {
+        position: Vector2D;
+        animation: HTMLImageElement;
+        animation_time: number;
+        animation_step: number;
+        direction: Direction;
+        direction_time: number;
+        direction_target_time: number;
+        hunted_by: Array<RedHand> = [];
+
+        static animations: Array<Array<HTMLImageElement>> = [];
+        static animation_width = 32;
+        static animation_height = 32;
+        static animation_update_rate = 300;
+        static minimum_direction_update_rate = 500;
+        static maximum_direction_update_rate = 2000;
+        static speed = 0.15;
+
+        static init() {
+            for (let i = 0; i < 4; ++i) {
+                Omori.animations.push([]);
+                for (let j = 0; j < 3; ++j) {
+                    Omori.animations[i].push(document.createElement("img"));
+                    Omori.animations[i][j].src =
+                        "/img/background/omori_" +
+                        direction_to_string(int_to_direction(i)) +
+                        "_" +
+                        String(j + 1) +
+                        ".png";
+                }
+            }
+        }
+
+        constructor(position: Vector2D) {
+            this.position = position;
+            this.direction = this.get_random_direction();
+            this.animation = Omori.animations[this.direction][0];
+            this.direction_time = 0;
+            this.animation_step = 0;
+            this.animation_time = 0;
+            this.direction_target_time = random_integer(
+                Omori.minimum_direction_update_rate,
+                Omori.maximum_direction_update_rate
+            );
+        }
+
+        kill() {
+            for (const red_hand of this.hunted_by) red_hand.stop_hunt();
+        }
+
+        get_random_direction() {
+            return int_to_direction(
+                random_integer(0, Object.keys(Direction).length / 2)
+            );
+        }
+
+        pick_new_direction() {
+            let possible_directions = [
+                Direction.Down,
+                Direction.Left,
+                Direction.Right,
+                Direction.Up,
+            ];
+            let remove_from_array = (value: Direction) => {
+                let result = possible_directions.filter((val) => val != value);
+                return result;
+            };
+            possible_directions = remove_from_array(this.direction);
+            if (this.position.x < 0)
+                possible_directions = remove_from_array(Direction.Left);
+            else if (this.position.x > canvas.width)
+                possible_directions = remove_from_array(Direction.Right);
+            if (this.position.y < 0)
+                possible_directions = remove_from_array(Direction.Up);
+            else if (this.position.y > canvas.height)
+                possible_directions = remove_from_array(Direction.Down);
+
+            this.direction =
+                possible_directions[
+                    random_integer(0, possible_directions.length)
+                ];
+
+            this.animation_step = 0;
+            this.animation_time = 0;
+            this.animation =
+                Omori.animations[this.direction][this.animation_step];
+            this.direction_target_time = random_integer(
+                Omori.minimum_direction_update_rate,
+                Omori.maximum_direction_update_rate
+            );
+        }
+
+        move(elapsed_time: number) {
+            switch (this.direction) {
+                case Direction.Down:
+                    this.position.y += Omori.speed * elapsed_time;
+                    break;
+                case Direction.Up:
+                    this.position.y -= Omori.speed * elapsed_time;
+                    break;
+                case Direction.Left:
+                    this.position.x -= Omori.speed * elapsed_time;
+                    break;
+                case Direction.Right:
+                    this.position.x += Omori.speed * elapsed_time;
+                    break;
+            }
+        }
+
+        update_animation(elapsed_time: number) {
+            this.animation_time += elapsed_time;
+            if (this.animation_time > Omori.animation_update_rate) {
+                this.animation_time = 0;
+                this.animation_step = (this.animation_step + 1) % 3;
+                this.animation =
+                    Omori.animations[this.direction][this.animation_step];
+            }
+        }
+
+        update(elapsed_time: number) {
+            this.update_animation(elapsed_time);
+            this.direction_time += elapsed_time;
+            this.move(elapsed_time);
+            if (
+                this.direction_time > this.direction_target_time ||
+                this.position.x < 0 ||
+                this.position.x > canvas.width ||
+                this.position.y < 0 ||
+                this.position.y > canvas.height
+            ) {
+                this.pick_new_direction();
+                this.direction_time = 0;
+            }
+        }
+
+        draw() {
+            ctx.save();
+            ctx.translate(
+                this.position.x - Omori.animation_width / 2,
+                this.position.y - Omori.animation_height / 2
+            );
+            ctx.drawImage(this.animation, 0, 0);
+            ctx.restore();
+        }
+    }
+
+    class RedHand {
+        static animation_1 = document.createElement("img");
+        static animation_2 = document.createElement("img");
+        static exclamation_animations: Array<HTMLImageElement> = Array(6);
+        static animation_width = 32;
+        static animation_height = 32;
+        static standard_update_frequence = 1000 / 60;
+
+        static animation_update_time_rate = 100; // Every 100ms, update the animation
+        static exclamation_update_time_rate = 150; // Every 150ms, update the animation
+        static target_update_time_rate = 300; // Every 300ms, update the target (wandering behavior)
+
+        static normal_speed = 2.5;
+        static normal_steering_force = 0.1;
+        static hunting_speed = 4;
+        static hunting_steering_force = 0.3;
+
+        static nb_red_hands = 40;
+        static target_margin = 100; // Spawn targets inside the screen (100px margin) so red hand doesn't get off screen for too long
+        static vision_range = 300;
+        static acceleration_duration = 1000;
+        static death_range = 8;
+
+        position = RedHand.get_random_position();
+        velocity = new Vector2D();
+        acceleration = new Vector2D();
+        target = RedHand.get_random_target();
+        target_time = 0;
+        animation = RedHand.animation_1;
+        animation_time = 0;
+        is_hunting = false;
+        target_omori: Omori | null = null;
+        acceleration_time = 0;
+        just_found_omori = false;
+        just_killed_omori = false;
+        show_exclamation = false;
+        exclamation_time = 0;
+        exclamation_animation: HTMLImageElement | null = null;
+
+        static init() {
+            RedHand.animation_1.src =
+                "/img/background/red_hand_animation_1.png";
+            RedHand.animation_2.src =
+                "/img/background/red_hand_animation_2.png";
+
+            for (let i = 0; i < RedHand.exclamation_animations.length; ++i) {
+                RedHand.exclamation_animations[i] =
+                    document.createElement("img");
+                RedHand.exclamation_animations[i].src =
+                    "/img/background/exclamation_mark_" +
+                    String(i + 1) +
+                    ".png";
+            }
+        }
+
+        static get_random_position() {
+            return new Vector2D(
+                random_integer(0, canvas.width),
+                random_integer(0, canvas.height)
+            );
+        }
+
+        static get_random_target() {
+            return new Vector2D(
+                random_integer(
+                    RedHand.target_margin,
+                    canvas.width - RedHand.target_margin
+                ),
+                random_integer(
+                    RedHand.target_margin,
+                    canvas.height - RedHand.target_margin
+                )
+            );
+        }
+
+        static relative_value(value: number, elapsed_time: number) {
+            return (value / RedHand.standard_update_frequence) * elapsed_time;
+        }
+
+        apply_force(force: Vector2D) {
+            this.acceleration.add(force);
+        }
+
+        update_target(elapsed_time: number) {
+            if (!this.is_hunting) {
+                this.target_omori = this.get_closest_omori_in_vision();
+                if (this.target_omori) {
+                    this.is_hunting = true;
+                    this.target_omori.hunted_by.push(this);
+                    this.target_time = 0;
+                    this.exclamation_time = 0;
+                    this.just_found_omori = true;
+                    this.show_exclamation = true;
+                }
+            }
+            if (this.target_omori) this.target = this.target_omori.position;
+            else {
+                this.target_time += elapsed_time;
+                if (this.target_time > RedHand.target_update_time_rate) {
+                    this.target = RedHand.get_random_target();
+                    this.target_time = 0;
+                }
+            }
+        }
+
+        check_for_kill() {
+            let index = null;
+            if (this.is_hunting) {
+                const distance = Math.sqrt(
+                    Math.pow(this.position.x - this.target.x, 2) +
+                        Math.pow(this.position.y - this.target.y, 2)
+                );
+                if (distance <= RedHand.death_range && this.target_omori)
+                    return omoris.indexOf(this.target_omori);
+            }
+            return index;
+        }
+
+        stop_hunt() {
+            this.just_killed_omori = true;
+            this.is_hunting = false;
+            this.target_omori = null;
+            this.target_time = 0;
+            this.just_found_omori = false;
+            this.target = RedHand.get_random_target();
+        }
+
+        update_animation(elapsed_time: number) {
+            this.animation_time += elapsed_time;
+            if (this.animation_time > RedHand.animation_update_time_rate) {
+                this.animation =
+                    this.animation == RedHand.animation_1
+                        ? RedHand.animation_2
+                        : RedHand.animation_1;
+
+                this.animation_time = 0;
+            }
+
+            if (this.show_exclamation) {
+                const max_time =
+                    RedHand.exclamation_animations.length *
+                    RedHand.exclamation_update_time_rate;
+                this.exclamation_time += elapsed_time;
+                if (this.exclamation_time >= max_time) {
+                    this.exclamation_animation = null;
+                    this.show_exclamation = false;
+                } else {
+                    const step = Math.floor(
+                        this.exclamation_time /
+                            RedHand.exclamation_update_time_rate
+                    );
+                    this.exclamation_animation =
+                        RedHand.exclamation_animations[step];
+                }
+            }
+        }
+
+        get_closest_omori_in_vision() {
+            let closest_distance = null;
+            let target_omori = null;
+            for (const omori of omoris) {
+                let distance = Math.sqrt(
+                    Math.pow(omori.position.x - this.position.x, 2) +
+                        Math.pow(omori.position.y - this.position.y, 2)
+                );
+                if (
+                    distance <= RedHand.vision_range &&
+                    (closest_distance === null || distance < closest_distance)
+                ) {
+                    closest_distance = distance;
+                    target_omori = omori;
+                }
+            }
+            return target_omori;
+        }
+
+        seek_target(elapsed_time: number) {
+            const desired_direction = Vector2D.sub(this.target, this.position);
+
+            let steering_force_value;
+            if (this.just_found_omori || this.just_killed_omori) {
+                steering_force_value =
+                    (this.acceleration_time / RedHand.acceleration_duration) *
+                        (RedHand.hunting_steering_force -
+                            RedHand.normal_steering_force) +
+                    RedHand.normal_steering_force;
+            } else
+                steering_force_value = this.is_hunting
+                    ? RedHand.hunting_steering_force
+                    : RedHand.normal_steering_force;
+
+            const steering_force = Vector2D.sub(
+                desired_direction,
+                this.velocity
+            );
+            steering_force.fixed_magnitude(
+                RedHand.relative_value(steering_force_value, elapsed_time)
+            );
+
+            this.apply_force(steering_force);
+        }
+
+        move(elapsed_time: number) {
+            let speed;
+            if (this.just_found_omori || this.just_killed_omori) {
+                if (this.just_found_omori)
+                    this.acceleration_time += elapsed_time;
+                else this.acceleration_time -= elapsed_time;
+                if (this.acceleration_time >= RedHand.acceleration_duration) {
+                    this.acceleration_time = RedHand.acceleration_duration;
+                    this.just_found_omori = false;
+                } else if (this.acceleration_time < 0) {
+                    this.acceleration_time = 0;
+                    this.just_killed_omori = false;
+                }
+                speed =
+                    (this.acceleration_time / RedHand.acceleration_duration) *
+                        (RedHand.hunting_speed - RedHand.normal_speed) +
+                    RedHand.normal_speed;
+            } else
+                speed = this.is_hunting
+                    ? RedHand.hunting_speed
+                    : RedHand.normal_speed;
+
+            this.velocity.add(this.acceleration);
+            this.velocity.fixed_magnitude(
+                RedHand.relative_value(speed, elapsed_time)
+            );
+
+            this.position.add(this.velocity);
+            this.acceleration.reset();
+        }
+
+        update(elapsed_time: number) {
+            this.update_target(elapsed_time);
+            this.seek_target(elapsed_time);
+            this.move(elapsed_time);
+            this.update_animation(elapsed_time);
+        }
+
+        draw() {
+            if (
+                this.position.x < -RedHand.animation_width ||
+                this.position.x > canvas.width + RedHand.animation_width ||
+                this.position.y < -RedHand.animation_height ||
+                this.position.y > canvas.height + RedHand.animation_height
+            )
+                // don't bother drawing if off screen
+                return;
+
+            const angle =
+                Math.atan2(this.velocity.y, this.velocity.x) + Math.PI;
+
+            ctx.save();
+            ctx.translate(
+                this.position.x - RedHand.animation_width / 2,
+                this.position.y - RedHand.animation_height / 2
+            );
+            ctx.rotate(angle);
+            ctx.drawImage(this.animation, 0, 0);
+            if (this.exclamation_animation)
+                ctx.drawImage(this.exclamation_animation, 0, 0);
+            ctx.restore();
+        }
+    }
+
+    function init_canvas() {
+        canvas = document.getElementById(
+            "canvas-background"
+        ) as HTMLCanvasElement;
+        canvas.classList.add("size-handled");
+        ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+
+        canvas.width = document.body.scrollWidth;
+        canvas.height = document.documentElement.scrollHeight;
+    }
+
+    let omoris: Array<Omori> = [];
+    let pause_start_timestamp = 0;
+    let pause_end_timestamp = 0;
+    let animation_paused = false;
+    let was_paused = false;
+
+    window.addEventListener("load", () => {
+        init_canvas();
+
+        RedHand.init();
+        Omori.init();
+        const red_hands: RedHand[] = [];
+        for (let i = 0; i < RedHand.nb_red_hands; ++i)
+            red_hands.push(new RedHand());
+
+        let last_time = 0;
+        let elapsed_time: number;
+
+        function loop(current_time: number) {
+            if (animation_paused === true) {
+                requestAnimationFrame(loop);
+                return;
+            }
+            if (last_time === 0) last_time = current_time;
+            elapsed_time = current_time - last_time;
+            last_time = current_time;
+            if (was_paused) {
+                elapsed_time -= pause_end_timestamp - pause_start_timestamp;
+                was_paused = false;
+            }
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (const omori of omoris) {
+                omori.update(elapsed_time);
+                omori.draw();
+            }
+            let death_indexes: Array<number> = [];
+            let death_index: number | null;
+            for (const red_hand of red_hands) {
+                red_hand.update(elapsed_time);
+                red_hand.draw();
+                death_index = red_hand.check_for_kill();
+                if (death_index !== null) death_indexes.push(death_index);
+            }
+            const dead_omoris = [...new Set(death_indexes)];
+            for (const dead_omori of dead_omoris) omoris[dead_omori].kill();
+            if (dead_omoris.length !== 0)
+                omoris = omoris.filter(
+                    (_, index) => dead_omoris.indexOf(index) === -1
+                );
+            requestAnimationFrame(loop);
+        }
+
+        requestAnimationFrame(loop);
+    });
+
+    window.addEventListener("click", (event: MouseEvent) => {
+        omoris.push(new Omori(new Vector2D(event.pageX, event.pageY)));
+    });
+
+    window.addEventListener("resize", () => {
+        init_canvas();
+    });
+
+    window.addEventListener("visibilitychange", (event) => {
+        const old_value = animation_paused;
+        if (document.visibilityState !== "visible") {
+            animation_paused = true;
+            was_paused = true;
+        } else animation_paused = false;
+
+        if (old_value !== animation_paused) {
+            if (animation_paused === true)
+                pause_start_timestamp = event.timeStamp;
+            else pause_end_timestamp = event.timeStamp;
+        }
+    });
+</script>
