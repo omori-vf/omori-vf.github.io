@@ -16,16 +16,34 @@
   },
   "installation": {
     "title": "Installation",
-    "description": "La procédure d'installation pour le patch FR d'OMORI",
-    "p1": "Voici la procédure d'installation pour le patch FR d'OMORI :",
-    "steps": {
-      "step1": "Si ça n'est pas déjà fait, installer OMORI avec Steam.",
-      "step2": "Télécharger le patch en cliquant",
-      "step3": "Extraire le patch dans le dossier d'installation de votre jeu."
+    "windows": {
+      "title": "Pour Windows",
+      "p1": "La procédure d'installation pour le patch FR d'OMORI sous Windows est très simple :",
+      "steps": {
+        "step1": "Télécharger l'installateur du patch disponible <0>ici</0>.",
+        "step2": "Lancer l'exécutable et appuyer sur \"Installer\"."
+      }
     },
-    "local_files": "Si vous ne savez pas où OMORI est installé, vous pouvez retrouver cette information via Steam. Pour cela, ouvrez Steam et cliquer sur Bibliothèque, puis clic droit sur \"OMORI\", qui devrait être listé à gauche. Dans \"Gérer\", cliquer sur \"Parcourir les fichiers locaux\". Cela va automatiquement vous ouvrir le dossier dans lequel OMORI a été installé. Il vous suffit d'extraire le patch français dans ce dernier.",
+    "macOS": {
+      "title": "Pour macOS",
+      "p1": "La procédure d'installation pour le patch FR d'OMORI sous macOS est également très simple :",
+      "steps": {
+        "step1": "Télécharger l'installateur du patch disponible <0>ici</0>.",
+        "step2": "Faire un clic droit sur l'installateur et appuyer sur \"Ouvrir\" (voir image de gauche). Appuyer une nouvelle fois sur \"Ouvrir\" si jamais le message d'avertissement ci-dessous (image de droite) apparaît.",
+        "step3": "Lancer l'exécutable et suivre les instructions (voir la vidéo ci-dessous)."
+      }
+    },
+    "manual": {
+      "title": "Installation manuelle",
+      "p1": "Si jamais il vous prenait l'envie d'installer le patch manuellement (non recommandé, surtout sous macOS), vous pouvez suivre les instructions suivantes :",
+      "steps": {
+        "step1": "Télécharger le patch <0>ici</0>.",
+        "step2": "Accéder au dossier d'installation d'OMORI (voir la vidéo ci-dessous).",
+        "step3": "Extraire les fichiers du patch dans le dossier d'installation d'OMORI. Accepter de remplacer les fichiers déjà existants."
+      }
+    },
+    "description": "La procédure d'installation pour le patch FR d'OMORI",
     "finished": "Et voilà ! La version française devrait être installée. Il ne vous reste plus qu'à y jouer !",
-    "overwrite": "Au moment de l'extraction, votre système d'exploitation devrait vous demander si vous souhaitez remplacer des fichiers déjà existants. C'est tout à fait normal et il vous faudra accepter de remplacer les fichiers déjà existants pour installer correctement le patch.",
     "issue": "Si vous rencontrez le moindre souci quant à l'installation du patch, vous pouvez nous contacter sur notre serveur <0>Discord</0>, dans le channel #discussion-traduction. Nous ferons au mieux pour vous guider."
   },
   "team": {
@@ -46,7 +64,7 @@
   "translation": {
     "title": "Traduction",
     "description": "Comment la création de la version française non-officielle d'OMORI a été faite",
-    "about": "<0>Notre patch de traduction française du jeu OMORI, c'est :</0><1><2>13130 répliques traduites</2><3>163 images traduites</3><4>1 fichier audio traduit</4><5>Une centaine de fichiers Javascript adaptés et rajoutés</5><6>3 vidéos traduites (+ 1 bande-annonce)</6><7>2 polices d'écriture modifiées</7></1><8>... Et quelques œuvres de l'équipe de traduction en bonus</8><9><10>Nous avons fait de notre mieux pour que notre travail soit le plus minutieux pour vous proposer une traduction de qualité et la meilleure expérience de jeu.</10><11>Tout cela a été possible en partie grâce aux nombreuses suggestions reçues de la part de la communauté. Merci à vous.</11>"
+    "about": "<0>Notre patch de traduction française du jeu OMORI, c'est :</0><1><2>13130 répliques traduites</2><3>164 images traduites</3><4>1 fichier audio traduit</4><5>Une centaine de fichiers Javascript adaptés et rajoutés</5><6>3 vidéos traduites (+ 1 bande-annonce)</6><7>2 polices d'écriture modifiées</7></1><8>... Et quelques œuvres de l'équipe de traduction en bonus</8><9><10>Nous avons fait de notre mieux pour que notre travail soit le plus minutieux pour vous proposer une traduction de qualité et la meilleure expérience de jeu.</10><11>Tout cela a été possible en partie grâce aux nombreuses suggestions reçues de la part de la communauté. Merci à vous.</11>"
   },
   "faq": {
     "title": "FAQ",
@@ -82,7 +100,7 @@
       },
       {
         "question": "Mon antivirus me dit que le patch en contient un, que faire ?",
-        "answer": "Notre patch est totalement dénué de virus."
+        "answer": "Notre patch ne contient aucun virus."
       },
       {
         "question": "Est-ce que je peux faire un let's play avec votre traduction ?",
