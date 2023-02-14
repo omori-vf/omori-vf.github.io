@@ -8,7 +8,7 @@
   },
   "index": {
     "title": "OMORI en français",
-    "description": "Le site de la traduction française non-officielle d'OMORI où vous pouvez trouver le OMORI patch fr.",
+    "description": "Le site de la traduction française non-officielle d'OMORI où vous pourrez trouver le patch FR.",
     "welcome": "Bienvenue",
     "welcome_text": "Bienvenue sur le site de la traduction non-officielle d'OMORI. Ce projet amateur a demandé la collaboration et la cohésion d'une équipe de 9 personnes, ainsi que 13 bêta-testeurs. Il s'est étendu sur presque deux ans et a nécessité des centaines d'heures de travail. Cette traduction a été créée par des fans, pour des fans. Nous espérons vous faire (re)découvrir le jeu qui nous a tous fait vibrer !",
     "disclaimer": "Avertissement",
@@ -16,7 +16,7 @@
   },
   "installation": {
     "title": "Installation",
-    "description": "La procédure d'installation pour le patch fr d'OMORI",
+    "description": "La procédure d'installation pour le patch FR d'OMORI",
     "p1": "Voici la procédure d'installation pour le patch FR d'OMORI :",
     "steps": {
       "step1": "Si ça n'est pas déjà fait, installer OMORI avec Steam.",
