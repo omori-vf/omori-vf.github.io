@@ -9,7 +9,11 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "i18n:generate": "astro-i18next generate"
+    "i18n:generate": "astro-i18next generate",
+    "docker:build": "docker build . -t omori-vf:latest",
+    "docker:run": "docker run --name omori-vf -d -p 80:80 --rm omori-vf:latest",
+    "docker:stop": "docker stop omori-vf",
+    "docker:clean": "docker rmi $(docker images -a -q)"
   },
   "dependencies": {
     "@astro-community/astro-embed-youtube": "^0.2.2",
