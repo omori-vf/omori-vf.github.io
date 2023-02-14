@@ -1,13 +1,9 @@
 import { defineConfig } from "astro/config";
 import astroI18next from "astro-i18next";
-
-// https://astro.build/config
 import svelte from "@astrojs/svelte";
-
-// https://astro.build/config
 import compress from "astro-compress";
+import sitemap from "@astrojs/sitemap";
 
-// https://astro.build/config
 export default defineConfig({
   site: "https://www.omori-en-francais.com/",
   integrations: [
@@ -19,5 +15,6 @@ export default defineConfig({
         png: true,
       },
     }),
+    sitemap(),
   ],
 });

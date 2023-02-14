@@ -7,7 +7,10 @@ import Layout from "../layouts/Layout.astro";
 changeLanguage("fr");
 ---
 
-<Layout title={t("translation.title")}>
+<Layout
+  title={t("translation.title")}
+  description={t("translation.description")}
+>
   <Frame>
     <section class="content">
       <h1>{t("translation.title")}</h1>
