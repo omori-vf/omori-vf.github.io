@@ -6,13 +6,16 @@ import sitemap from "@astrojs/sitemap";
 import { promises as fs } from "fs";
 import crypto from "crypto";
 import os from "os";
+import robotsTxt from "astro-robots-txt";
 
+// https://astro.build/config
 export default defineConfig({
   site: "https://www.omori-en-francais.com/",
   integrations: [
     astroI18next(),
     svelte(),
     sitemap(),
+    robotsTxt(),
     compress({
       img: {
         webp: false,

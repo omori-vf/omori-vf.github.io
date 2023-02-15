@@ -22,6 +22,7 @@
     "astro": "^2.0.12",
     "astro-compress": "^1.1.33",
     "astro-i18next": "^1.0.0-beta.17",
+    "astro-robots-txt": "^0.3.12",
     "astro-seo": "^0.7.0",
     "svelte": "^3.55.1"
   },
