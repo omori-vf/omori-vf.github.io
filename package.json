@@ -18,16 +18,16 @@
   "dependencies": {
     "@astro-community/astro-embed-youtube": "^0.2.2",
     "@astrojs/sitemap": "^1.0.1",
-    "@astrojs/svelte": "^2.0.1",
-    "astro": "^2.0.10",
-    "astro-compress": "^1.1.32",
+    "@astrojs/svelte": "^2.0.2",
+    "astro": "^2.0.12",
+    "astro-compress": "^1.1.33",
     "astro-i18next": "^1.0.0-beta.17",
     "astro-seo": "^0.7.0",
     "svelte": "^3.55.1"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.51.0",
-    "@typescript-eslint/parser": "^5.51.0",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.52.0",
     "eslint": "^8.34.0",
     "eslint-plugin-astro": "^0.23.0",
     "eslint-plugin-svelte3": "^4.0.0",
