@@ -12,51 +12,127 @@ import Layout from "../layouts/Layout.astro";
   <Frame>
     <section class="content">
       <h1>{t("installation.title")}</h1>
-      <p>{t("installation.p1")}</p>
+      <h2>{t("installation.windows.title")}</h2>
+      <p>{t("installation.windows.p1")}</p>
       <ol>
-        <li>{t("installation.steps.step1")}</li>
         <li>
-          {t("installation.steps.step2")}
-          <a
-            href="https://github.com/omori-vf/omori-vf.github.io/releases/download/v1.0.8/patch.zip"
-            >{t("terms.here")}</a
-          >.
+          <Trans i18nKey="installation.windows.steps.step1">
+            <a
+              href="https://github.com/omori-vf/omori-vf.github.io/releases/download/v1.0.8/OMORI_PATCH_FR.exe"
+            ></a>
+          </Trans>
+          <li>
+            {t("installation.windows.steps.step2")}
+          </li>
         </li>
-        <li>{t("installation.steps.step3")}</li>
+        <img
+          src="/img/installation/windows_installer.webp"
+          alt="Windows installer"
+          loading="lazy"
+        />
       </ol>
-      <p>
-        {t("installation.finished")}
-      </p>
-      <p>
-        {t("installation.local_files")}
-      </p>
-      <img
-        class="content-image"
-        src="/img/installation/omori_local_files.webp"
-        alt="omori_local_files"
-      />
-      <p>
-        <b>{t("terms.Note")} :</b>
-        {t("installation.overwrite")}
-      </p>
+      <p>{t("installation.finished")}</p>
 
+      <h2>{t("installation.macOS.title")}</h2>
+      <p>{t("installation.macOS.p1")}</p>
+      <ol>
+        <li>
+          <Trans i18nKey="installation.macOS.steps.step1">
+            <a
+              href="https://github.com/omori-vf/omori-vf.github.io/releases/download/v1.0.8/OMORI_PATCH_FR.pkg"
+            ></a>
+          </Trans>
+          <li>
+            {t("installation.macOS.steps.step2")}
+          </li>
+          <div class="hor-img">
+            <img
+              src="/img/installation/open_macOS_installer.webp"
+              alt="Open macOS installer"
+              loading="lazy"
+            />
+            <img
+              src="/img/installation/execute_macOS_installer.webp"
+              alt="Execute macOS installer"
+              loading="lazy"
+            />
+          </div>
+          <li>
+            {t("installation.macOS.steps.step3")}
+          </li>
+        </li>
+        <img
+          src="/img/installation/macos_installer.webp"
+          alt="macOS installer"
+          loading="lazy"
+        />
+      </ol>
+      <p>{t("installation.finished")}</p>
+
+      <h2>{t("installation.manual.title")}</h2>
       <p>
-        <Trans i18nKey="installation.issue">
-          <a target='\"_blank\"' href="https://discord.gg/omorifr">Discord</a>
-        </Trans>
+        {t("installation.manual.p1")}
       </p>
+      <ol>
+        <li>
+          <Trans i18nKey="installation.manual.steps.step1">
+            <a
+              href="https://github.com/omori-vf/omori-vf.github.io/releases/download/v1.0.8/patch.zip"
+            ></a>
+          </Trans>
+          <li>
+            {t("installation.manual.steps.step2")}
+          </li>
+          <img
+            class="content-image"
+            src="/img/installation/omori_local_files.webp"
+            alt="Accessing local files"
+            loading="lazy"
+          />
+
+          <li>
+            {t("installation.manual.steps.step3")}
+          </li>
+        </li>
+      </ol>
+      <section class="content">
+        <p>
+          <Trans i18nKey="installation.issue">
+            <a target='\"_blank\"' href="https://discord.gg/omorifr">Discord</a>
+          </Trans>
+        </p>
+      </section>
     </section>
   </Frame>
+
+  <style>
+    div.hor-img {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    div.hor-img img {
+      max-height: 300px;
+    }
+
+    ol {
+      display: flex;
+      flex-direction: column;
+    }
+
+    img {
+      align-self: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      max-height: 390px;
+      width: 100%;
+      object-fit: contain;
+    }
+
+    h1 + * {
+      margin-top: var(--spacing-m);
+    }
+  </style>
 </Layout>
-
-<style>
-  img {
-    align-self: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-
-  h1 + * {
-    margin-top: var(--spacing-m);
-  }
-</style>
