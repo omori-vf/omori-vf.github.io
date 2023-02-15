@@ -12,7 +12,7 @@ import Layout from "../layouts/Layout.astro";
   <Frame>
     <section class="content">
       <h1>{t("installation.title")}</h1>
-      <h3>{t("installation.windows.title")}</h3>
+      <h2>{t("installation.windows.title")}</h2>
       <p>{t("installation.windows.p1")}</p>
       <ol>
         <li>
@@ -26,14 +26,14 @@ import Layout from "../layouts/Layout.astro";
           </li>
         </li>
         <img
-          class="content-image"
-          src="/img/installation/windows_installer.gif"
+          src="/img/installation/windows_installer.webp"
           alt="Windows installer"
+          loading="lazy"
         />
       </ol>
       <p>{t("installation.finished")}</p>
 
-      <h3>{t("installation.macOS.title")}</h3>
+      <h2>{t("installation.macOS.title")}</h2>
       <p>{t("installation.macOS.p1")}</p>
       <ol>
         <li>
@@ -47,14 +47,14 @@ import Layout from "../layouts/Layout.astro";
           </li>
           <div class="hor-img">
             <img
-              class="content-image"
-              src="/img/installation/open_macOS_installer.png"
+              src="/img/installation/open_macOS_installer.webp"
               alt="Open macOS installer"
+              loading="lazy"
             />
             <img
-              class="content-image"
-              src="/img/installation/execute_macOS_installer.png"
+              src="/img/installation/execute_macOS_installer.webp"
               alt="Execute macOS installer"
+              loading="lazy"
             />
           </div>
           <li>
@@ -62,14 +62,14 @@ import Layout from "../layouts/Layout.astro";
           </li>
         </li>
         <img
-          class="content-image"
-          src="/img/installation/macos_installer.gif"
+          src="/img/installation/macos_installer.webp"
           alt="macOS installer"
+          loading="lazy"
         />
       </ol>
       <p>{t("installation.finished")}</p>
 
-      <h3>{t("installation.manual.title")}</h3>
+      <h2>{t("installation.manual.title")}</h2>
       <p>
         {t("installation.manual.p1")}
       </p>
@@ -87,6 +87,7 @@ import Layout from "../layouts/Layout.astro";
             class="content-image"
             src="/img/installation/omori_local_files.webp"
             alt="Accessing local files"
+            loading="lazy"
           />
 
           <li>
@@ -94,12 +95,13 @@ import Layout from "../layouts/Layout.astro";
           </li>
         </li>
       </ol>
-
-      <p>
-        <Trans i18nKey="installation.issue">
-          <a target='\"_blank\"' href="https://discord.gg/omorifr">Discord</a>
-        </Trans>
-      </p>
+      <section class="content">
+        <p>
+          <Trans i18nKey="installation.issue">
+            <a target='\"_blank\"' href="https://discord.gg/omorifr">Discord</a>
+          </Trans>
+        </p>
+      </section>
     </section>
   </Frame>
 
@@ -128,12 +130,6 @@ import Layout from "../layouts/Layout.astro";
 
     h1 + * {
       margin-top: var(--spacing-m);
-    }
-
-    h3 {
-      margin-top: 1em;
-      margin-bottom: 1.5em;
-      font-size: 1.4em;
     }
   </style>
 </Layout>
